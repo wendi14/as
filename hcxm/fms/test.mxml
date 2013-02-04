@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			import hcxm.air.sql.Connect;
+			import hcxm.fms.events.StatusEventW;
+			import hcxm.fms.FmsConnect;
+			private function init():void
+			{
+				var fmsc:FmsConnect=new FmsConnect('rtmp://112.handong.cc/wen/');
+				fmsc.addEventListener(StatusEventW.OK,ok)
+				fmsc.addEventListener(StatusEventW.FAIL,fa)
+				fmsc.addEventListener(StatusEventW.REJECT,re)
+				
+			}
+			private function ok(e):void
+			{
+				trace('成功')
+			}
+			private function fa(e):void
+			{
+				trace('失败')
+			}
+			private function re(e):void
+			{
+				trace('拒绝')
+			}
+		]]>
+	</mx:Script>
+</mx:Application>

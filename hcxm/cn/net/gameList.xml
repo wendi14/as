@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<xml>
+		<name>捉小猫</name>
+		<url>捉小猫/ZuoXiaoMao.swf</url>
+	</xml>
+	<xml>
+		<name>图形对位置</name>
+		<url>图形对位置/TuXingDuiWei.swf</url>
+	</xml>
+	<xml>
+		<name>请选择</name>
+		<url></url>
+	</xml>
+	<xml>
+		<name>图形对位置</name>
+		<url>图形对位置/TuXingDuiWei.swf</url>
+	</xml>
+	<xml>
+		<name>飞行棋</name>
+		<url>飞行棋/FeiXingQi.swf</url>
+	</xml>
+	<xml>
+		<name>堆城堡</name>
+		<url>堆城堡/DuiCenBao.swf</url>
+	</xml>
+	<xml>
+		<name>五子棋</name>
+		<url>五子棋/wuzi.swf</url>
+	</xml>
+	<xml>
+		<name>炒房团</name>
+		<url>炒房团/caofangtuan.swf</url>
+	</xml>
+	<xml>
+		<name>种花草</name>
+		<url>种花草/zhonghua.swf</url>
+	</xml>
+	<xml>
+		<name>小猴搭桥</name>
+		<url>小猴搭桥/DaQiao.swf</url>
+	</xml>
+	<xml>
+		<name>小水滴</name>
+		<url>小水滴/XiaoShuiDi.swf</url>
+	</xml>
+</data>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+    resize="callLater(moveIFrame)"
+    move="callLater(moveIFrame)">
+
+    <mx:Script>
+    <![CDATA[
+
+        import flash.external.ExternalInterface;
+        import flash.geom.Point;
+        import flash.net.navigateToURL;
+
+        private var __source: String;
+
+        private function moveIFrame(): void {
+
+            var localPt:Point = new Point(0, 0);
+            var globalPt:Point = this.localToGlobal(localPt);
+            ExternalInterface.call("moveIFrame", globalPt.x, globalPt.y, this.width, this.height);
+        }
+
+        public function set source(source: String): void {
+            if (source) {
+
+                if (! ExternalInterface.available)
+                {
+                	// TODO: determine if this Error is actually needed.  The debugger 
+                	// build gives the error below.  Assuming that this error will not show
+                	// up in the release build but haven't checked.
+                    throw new Error("The ExternalInterface is not available in this container. Internet Explorer ActiveX, Firefox, Mozilla 1.7.5 and greater, or other browsers that support NPRuntime are required.");
+                }
+                __source = source;
+                ExternalInterface.call("loadIFrame", source);
+            }
+        }
+
+        public function get source(): String {
+            return __source;
+        }
+
+        override public function set visible(visible: Boolean): void {
+            super.visible=visible;
+            if (visible)
+            {
+                ExternalInterface.call("showIFrame");
+            }
+            else
+            {
+                ExternalInterface.call("hideIFrame");
+            }
+        }
+
+    ]]>
+    </mx:Script>
+
+</mx:Canvas>

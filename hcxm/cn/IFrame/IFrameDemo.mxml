@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" creationComplete="initTree(); iFrame.visible=true"> 
+
+    <mx:HBox width="100%" height="100%">
+
+        <mx:Panel title="Tree" width="200" height="100%" >
+            <mx:Tree id="tree" width="100%" height="100%" dataProvider="{content}"
+                     change="iFrame.source=tree.selectedItem.path"  />
+        </mx:Panel>
+
+        <mx:Panel width="100%" height="100%" title="Content">
+            <IFrame id="iFrame" source="http://www.google.com" width="100%" height="100%"  />
+            <mx:ControlBar>
+                <mx:CheckBox id="cbVisible" label="IFrame Visible" selected="true" click="iFrame.visible=cbVisible.selected"/>
+            </mx:ControlBar>
+
+        </mx:Panel>
+
+    </mx:HBox>
+
+    <mx:Script>
+    <![CDATA[
+
+    import mx.collections.ArrayCollection;
+
+    // TODO: determine whether we can go back to using the XML object in MXML, which
+    // is much less verbose than the initTree() function below.  This was changed
+    // because using the XML object as the data provider to a Tree looks very 
+    // strange in 2.0.  Still need to investigate using ITreeDataDescriptor or
+    // need to ask others on the recommended approach here.
+
+    [Bindable]
+    public var content:ArrayCollection;
+
+    private function initTree()
+    {
+        content = new ArrayCollection();
+
+        var googleItem:Object = new Object();
+        googleItem.label = 'Google';
+        googleItem.path = 'http://www.google.com';
+        var yahooItem:Object = new Object();
+        yahooItem.label = 'Yahoo';
+        yahooItem.path = 'http://www.yahoo.com';
+        var searchItem:Object = new Object();
+        searchItem.label = 'Search';
+        searchItem.children = [googleItem, yahooItem];
+        content.addItem(searchItem);
+
+        var adobeItem:Object = new Object();
+        adobeItem.label = 'Adobe';
+        adobeItem.path = 'http://www.adobe.com';
+        var softwareItem:Object = new Object();
+        softwareItem.label = 'Software';
+        softwareItem.children = [adobeItem];
+        content.addItem(softwareItem);
+        
+        // TODO: add some links here to Flex sites
+    }
+    ]]>
+
+    </mx:Script>
+
+</mx:Application>

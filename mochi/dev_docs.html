@@ -1,0 +1,2945 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:py="http://genshi.edgewall.org/" xmlns="http://www.w3.org/1999/xhtml"><head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="Keywords" content="麻球游戏,flash 游戏,游戏开发,游戏开发者,麻球网,flash 开发,flash 游戏广告,免费 flash 游戏,游戏内置广告,IGA,正版游戏,mochi,mochi games,麻球游戏联盟,mochi media"><meta name="description" content="麻球游戏是全球领先的在线游戏运营平台，汇聚了全球顶尖游戏开发高手的正版作品并通过遍布全球的发行商进行发行。开发者与发布商共同分享游戏中内置的优质品牌广告带来的收益。"><title>开发者说明 - 麻球游戏 - 全球领先的在线游戏运营平台</title><link href="dev_docs_files/screen.css" rel="stylesheet" type="text/css" media="screen"><script src="dev_docs_files/MochiKit.js" type="text/javascript"></script><script src="dev_docs_files/global.js" type="text/javascript"></script></head><body id="help" class="docs dev"><xi:include href="../make-absolute.html">
+    
+        
+		
+		
+        
+        
+        <!--[if IE]>
+            <link rel="stylesheet" type="text/css" href="../../static/support/css/ie.css" media="screen" />
+        <![endif]-->
+        
+        
+    
+
+        <div id="page">
+            <div id="header">
+                <h1 id="title"><a href="http://zh-cn.mochimedia.com/dev/dashboard" title="I ? Mochi">Mochi 开发者控制面板</a></h1>
+            </div>
+            <div id="content">
+                <div id="title_section">
+                    <h1>Mochi 支持中心</h1>
+                    <div class="clear"></div>
+                    <ul id="sub-nav">
+                        <li class="first active"><a id="faq_section_dev_title" class="faq_section" href="http://zh-cn.mochimedia.com/support/dev_faq.html">开发者</a></li>
+                        <li class=""><a id="faq_section_pub_title" class="faq_section" href="http://zh-cn.mochimedia.com/support/pub_faq.html">发布商</a></li>
+                        <li class=""><a id="faq_section_pub_title" class="faq_section" href="http://zh-cn.mochimedia.com/support/account_faq.html">概要</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+
+                <!-- end title -->
+                <div class="clear"></div>
+
+                <div id="main">
+                    <h1>开发者支持</h1>
+                    <ul class="tabs">
+                        <li class=""><a href="http://zh-cn.mochimedia.com/support/dev_faq.html">常见问题</a></li>
+                        <li class="active"><a href="http://zh-cn.mochimedia.com/support/dev_docs.html">说明</a></li>
+                    </ul>
+
+                    <!-- mochiads api local docs start --> <!--! TOC -->
+                    <div id="toc">
+                        <h1><a name="toc"></a>目录</h1>
+                        <ol>
+                            <li>
+                                <h2><a href="#MochiEvents" title="Mochi 分析 API 说明">Mochi 分析 API 说明</a></h2>
+                                <ol>
+                                    <li><a href="#tracking_ov" title="概述">1.1 概述</a></li>
+                                    <li><a href="#tracking_pre" title="前提条件">1.2 前提条件</a></li>
+                                    <li><a href="#tracking_services" title="连接到 Mochi 服务">1.3 连接到 MochiServices</a></li>
+                                    <li><a href="#tracking_events" title="跟踪自定义事件">1.4 跟踪自定义事件</a></li>
+                                    <li><a href="#tracking_api" title="跟踪API">1.5 跟踪 API</a></li>
+                                </ol>
+                            </li>                                                                          
+                            <li>
+                                <h2><a href="#MochiSocial" title="社交API说明">Mochi 社交 API 说明</a></h2>
+                                <ol>
+                                    <li><a href="#social_ov" title="概述">1.1 概述</a></li>
+                                    <li><a href="#social_pre" title="前提条件">1.2 前提条件</a></li>
+                                    <li><a href="#social_services" title="连接到 Mochi 服务">1.3 连接到 MochiServices</a></li>
+                                    <li><a href="#social_login" title="显示通用用户登录窗体部件">1.4 显示通用用户登录窗体部件</a></li>
+                                    <li><a href="#social_event" title="监听事件">1.5 监听事件</a></li>
+                                    <li><a href="#social_userproperties" title="永久保存用户属性">1.6 保存永久的用户属性</a></li>
+                                    <li><a href="#social_api" title="API">1.7 API</a></li>
+                                    <li><a href="#social_getuserinfo" title="获取用户信息" py:if="beta">1.8 获取用户信息</a></li>
+                                    <li><a href="#social_socialaction" title="使用户社区化" py:if="beta">1.9 使用户社区化</a></li>
+                                    <li><a href="#social_events" title="事件定义">1.10 事件定义</a></li>
+                                    <li><a href="#social_mochiuserdata" title="通用数据存储">1.11 通用数据存储</a></li>                                    
+                                </ol>
+                            </li>
+                            <li>
+                                <h2><a href="#MochiCoins" title="Mochi币API说明">Mochi 钱币 API 说明</a></h2>
+                                <ol>
+                                    <li><a href="#coins_ov" title="概述">1.1 概述</a></li>
+                                    <li><a href="#coins_pre" title="前提条件">1.2 前提条件</a></li>
+                                    <li><a href="#coins_services" title="连接到 Mochi 服务">1.3 连接到 MochiServices</a></li>
+                                    <li><a href="#coins_event" title="监听事件">1.4 监听事件</a></li>
+                                    <li><a href="#coins_store" title="显示商店">1.5 显示商店</a></li>
+                                    <li><a href="#coins_item" title="显示单品">1.6 显示单品</a></li>
+                                    <li><a href="#coins_video" title="前提条件">1.7 显示演示视频</a></li>
+                                    <li><a href="#coins_api" title="API">1.8 API</a></li>
+                                    <li><a href="#coins_events" title="事件定义">1.9 事件定义</a></li>
+                                    <li><a href="#coins_mochiinventory" title="消耗品和游戏中货币支持">1.10 消耗品和游戏中货币支持API</a></li>
+                                    <li><a href="#coins_sandbox" title="Sandbox 模式">2.0 Sandbox 模式</a></li>
+                                    <li><a href="#coins_server" title="服务器验证">3.0 服务器验证</a></li>
+
+                                </ol>
+                            </li>
+                            <li>
+                                <!--! MOCHIADS -->
+                                <h2><a href="#MochiAds" title="广告API说明">Mochi 广告 API</a></h2>
+                                <ol>
+                                    <li><a href="#Prerequisites:" title="前提条件">1.1 前提条件</a></li>
+                                    <li><a href="#The_MochiAds_Codes:" title="Mochi 广告 API 广告代码">1.2 Mochi API 广告代码</a>
+                                        <ol>
+                                            <li><a href="#Include_File_Installation:" title="Include 文件夹安装">Include 文件夹安装</a></li>
+                                            <li><a href="#Adding_the_In-game_Code:" title="添加游戏中代码">添加游戏中代码</a></li>
+                                            <li><a href="#Pregame_Code:" title="使用游戏前广告">游戏前广告</a></li>
+                                            <li><a href="#Interlevel_Code:" title="使用游戏关卡广告">游戏关卡广告</a></li>
+                                            <li><a href="#Clickaway_Code:" title="使用点击播放广告">点击播放广告</a></li>
+                                        </ol>
+                                    </li>
+                                    <li><a href="#Customizing_Your_Ad" title="自定义您的广告">1.3 自定义您的广告</a></li>
+                                    <li><a href="#Changing_Ad_Behaviors" title="更改广告表现">1.4 更改广告行为</a></li>
+                                    <li><a href="#MTASC_and_MXMLC" title="MTASC 和 MXMLC">1.5 MTASC 和 MXMLC</a></li>
+                                    <li><a href="#Flex" title="Adobe Flex">1.6 Adobe Flex</a></li>
+                                    <li><a href="#AS3_Preloader" title="AS3 预载">1.7 ActionScript 3.0 预载</a></li>
+                                    <li><a href="#FlashDevelop" title="AS3 预载">1.8 Flash 开发</a></li>
+                                    <li><a href="#More_Resources" title="更多资源">1.9 更多资源</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <!--! MOCHISERVICES -->
+                                <h2><a href="#MochiServices" title="积分API说明">Mochi 积分 API</a></h2>
+                                <ol>
+                                    <li>
+                                        <!--! MochiServices -->
+                                        <h3><a href="#serv_ov" title="Mochi 服务说明">1.0 概述</a></h3>
+                                        <ol>
+                                            <li><a href="#serv_ov" title="前提条件">1.1 概述</a></li>
+                                            <li><a href="#serv_pre" title="前提条件">1.2 前提条件</a></li>
+                                            <li><a href="#serv_api" title="前提条件">1.3 连接到 MochiServices</a></li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                        <!--! LEADERBOARDS -->
+                                        <h3><a href="#MochiScores" title="积分说明">2.0 积分</a></h3>
+                                        <ol>
+                                            <li><a href="#score_ov" title="前提条件">2.1 概述</a></li>
+                                            <li><a href="#score_pre" title="前提条件">2.2 前提条件</a></li>
+                                            <li><a href="#Displaying_the_Leaderboard_Widget" title="显示积分窗体部件">2.3 显示排行榜窗体部件</a></li>
+                                            <li><a href="#Saving_Your_Board_ID" title="保存您的排行榜 ID">2.4 保存您的排行榜 ID</a></li>
+                                            <li><a href="#Other_Leaderboard_Options" title="其他积分选项">2.5 其他积分选项</a></li>
+                                            <li><a href="#The_MochiScores_API" title="Mochi 积分 API">2.6 积分 API 引用</a></li>
+                                            <li><a href="#Error_Handling">2.7 错误处理</a></li>
+                                            <li><a href="#Scores_Data_Format" title="积分数据格式">2.8 自定义积分和积分数据</a></li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                        <!--! LEADERBOARDS -->
+                                        <h3><a href="#MochiDigits" title="MochiDigits说明">3.0 MochiDigits</a></h3>
+                                        <ol>
+                                            <li><a href="#digits_ov" title="前提条件">3.1 概述</a></li>
+                                            <li><a href="#digits_pre" title="前提条件">3.2 前提条件</a></li>
+                                            <li><a href="#digits_use" title="前提条件">3.3 使用</a></li>
+                                        </ol>
+                                    </li>
+                                </ol>
+
+
+                                <h2><a href="#LinkTracking" title="链接跟踪说明">Mochi 链接跟踪 API</a></h2>
+
+                                <ol>
+                                    <!--! LINK TRACKING -->
+                                    <li><a href="#link_ov" title="前提条件">1.1 概述</a></li>
+                                    <li><a href="#link_pre" title="前提条件">1.2 前提条件</a></li>
+                                    <li><a href="#link_api" title="前提条件">1.3 API 引用</a></li>
+                                </ol>
+                            </li>
+                            <!-- mochiads api local docs end -->
+                            <li>
+                                <h2><a href="#LiveUpdates" title="Mochi 在线更新">Mochi 在线更新</a></h2>
+                                <ol>
+                                    <li><a href="#mc_overview" title="概述">1.1 概述</a></li>
+                                    <li><a href="#mc_install" title="安装">1.2 普通安装</a></li>
+                                    <li><a href="#mc_test" title="兼容性">1.3 测试您的游戏兼容性</a></li>
+                                    <li><a href="#mc_as3" title="准备">1.4 准备 AS3 游戏</a></li>
+                                    <li><a href="#mc_as2" title="准备">1.5 准备 AS2 游戏</a></li>
+                                    <li><a href="#mc_as1" title="准备">1.6 准备 AS1 游戏</a></li>
+                                    <li><a href="#mc_third" title="API">1.7 第三方 API 写入 AS2 游戏</a></li>
+                                </ol>
+                            </li>
+                            <!-- mochiads api local docs start -->
+                        </ol>
+                        <div class="clear"></div>
+                    </div>
+
+                    <!--! MochiEvents -->
+                    <div class="section_1">
+                        <a name="MochiEvents"></a>
+                        <h1>Mochi 分析 API 说明</h1>
+
+                        <div class="section_2">
+                            <a name="tracking_ov"></a>
+                            <h2>1.1 概述</h2>
+                            <p>
+                                Mochi 分析 API 为开发者提供了跟踪用户游戏信息的方法。用户游戏信息包括会话持续时间，平均每个玩家每一轮游戏上花费的时长，还跟踪其他事件，如物品提取，游戏进度。
+                            </p>
+                        </div>
+
+                        <div class="section_2">
+                            <a name="tracking_pre"></a>
+                            <h2>1.2 前提条件</h2>
+                            <p>
+                                Mochi API 与 Flash Player 7 之前的版本不兼容，并且不再兼容 ActionScript 1.0。
+                            </p>
+
+                            <h4>安装 Mochi 数据跟踪 API</h4>
+                            <ol>
+                                <li>下载并解压缩最新的 Mochi API。 </li>
+                                <li>复制 mochi 文件夹并将其粘贴到您的游戏的根目录。 一般情况下这与您的游戏的 FLA 文件目录相同。</li>
+                            </ol>
+
+                            <div class="download">
+                                <a href="https://www.mochimedia.com/dl/MochiAPI_v3_8.zip">Mochi API v3.8</a>
+                            </div>
+                        </div>
+                        
+                        <div class="section_2">
+                            <a name="tracking_services"></a>
+                            <h2>1.3 连接到 Mochi 服务</h2>
+
+                            <div class="method">
+                                <h3>连接</h3>
+                                <div class="function">
+                                    <div class="signature">
+                                        connect(id:String, clip:Object, onError:Function):void
+                                    </div>
+
+                                    <div class="description">
+                                        <h4>描述：</h4>
+                                        <p>
+                                            从 Mochi 服务器中获取并初始化 MochiServices.swf。 任何 API 的调用都只能在 MochiServices.swf 下载并初始化后才能被执行。
+                                        </p>
+                                    </div>
+
+                                    <div class="parameters">
+                                        <h4>参数：</h4>
+                                        <dl>
+                                            <dt><strong>id</strong>:String</dt>
+                                            <dd>Mochi 游戏 ID</dd>
+                                            <dt><strong>clip</strong>:Object</dt>
+                                            <dd>在movieclip或Sprite中加载 API（除 AS3 外，其他为可选项，默认到 _root）。  在 as3 中，剪辑必须是动态的。</dd>
+                                            <dt><strong>onError</strong>:Function</dt>
+                                            <dd>
+                                                如果 Mochi 服务无法连接到服务器或在任何其他API调用中发生任何 IO 错误，将调用这种方法。onError 的处理程序将接收描述该错误的状态代码。  <p>可能发生的错误：</p>
+                                                <ul>
+                                                    <li>NotConnected — 服务无法连接或无法加载当前movieclip。</li>
+                                                    <li>IOError — 服务器已经连接，但是无法和服务器交互。</li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </div>
+
+
+
+
+                                    <div class="example">
+                                        <h4>AS3 示例：</h4>
+
+<blockquote class="code"><pre>mochi.as3.MochiServices.connect("xxx", root, onConnectError);  // use mochi.as2.MochiServices.connect for AS2 API
+
+public function onConnectError(status:String):void {
+<span class="comment">// handle error here...</span>
+}
+</pre></blockquote>
+
+                                        <p>… 在引号中的 ‘xxx’ 代表您的 Mochi 游戏 ID。 测试您的视频，然后应该会在您的输出面板中看到以下内容：</p>
+
+                                        <blockquote class="code trace">
+                                            Mochi 服务连接…<br> 等待 Mochi 服务连接…<br> 已连接！
+                                        </blockquote>
+
+                                        <p>
+如果您看到以上内容，那意味着“mochi”文件夹的目录位置正确，并为 Mochi 服务提供了正确的 Mochi 游戏
+ID。请记住，您需要在游戏开始时调用一次connect，然后才能在您的游戏中连接 Mochi 服务，调用其它的API。 </p>
+
+                                        <h3>AS3 要求 - <em>剪辑</em> 参数</h3>
+                                        <p>
+在 ActionScript 3 中，Stage的root无法进行全局访问。 如果一个子画画或movieclip没有权限访问 root
+或已添加到显示列表的另一个容器，那么它不能直观地被显示在Stage上。基于这个原因，在调用 MochiServices.connect
+时，您必须向剪辑参数提供您的Stage的root或对子Stage的Sprite 或 movieclip的引用。
+请注意传递的剪辑也必须是动态的。 </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section_2">
+                            <a name="tracking_events"></a>
+                            <h2>1.4 数据跟踪 API</h2>
+                            <p>
+事实上数据分析 API 由3 个基本调用组成。
+这些调用允许我们的系统来确定单个会话中平均每个用户在您的游戏上花费的持续时间，玩家在实际戏过程中花费的时间，以及跟踪您定义的明确事件。
+大多数使用 MochiServices.com 的游戏都会发生会话持续时间自动跟踪，并不需要开发者介入。
+跟踪游戏进行过程和自定义事件需要将新的函数调用添加到您的游戏。 </p>
+
+                            <p>
+                                </p><h4>跟踪游戏回合</h4>
+跟踪游戏时间包含两个调用。 这些调用是 startPlay 和 endPlay。
+这两个调用组合让我们的服务器得到了用户玩您的游戏时花费的时间总数。 注意只可以有一个活动的回合，所以您将无法同时跟踪多个持续时间。 <p>
+                            </p><h4>AS3 示例：</h4>
+
+                    <blockquote class="code"><pre>mochi.as3.MochiEvents.startPlay('easy');
+// ... level actions happen
+mochi.as3.MochiEvents.endPlay();
+                    </pre></blockquote>
+                                
+                            
+
+                            <p>
+                                </p><h4>跟踪自定义事件</h4>
+除跟踪游戏持续时间外，我们还为跟踪其他游戏事件提供支持。
+这些事件并非暗指一段持续时间，而是用于跟踪诸如游戏世界的成就，以及标记开发者的重要里程碑。 这可用于测定游戏特定阶段的难度，或跟踪统计信息。 <p>
+                            </p><h4>AS3 示例：</h4>
+
+                    <blockquote class="code"><pre>mochi.as3.MochiEvents.trackEvent('level gained',7);
+                    </pre></blockquote>
+
+                            
+                        </div>
+                        
+                        <div class="section_2">
+                            <a name="tracking_api"></a>
+                            <h2>1.5 API引用 </h2>
+
+                            <div class="method">
+                                <h3>startPlay</h3>
+                                <div class="function">
+                                    <div class="signature">
+                                        startPlay(tag:String):void
+                                    </div>
+
+                                    <div class="description">
+                                        <h4>描述：</h4>
+                                        <p>
+                                            跟踪游戏的开始。
+                                        </p>
+                                    </div>
+
+                                    <div class="parameters">
+                                        <h4>参数：</h4>
+                                        <dl>
+                                            <dt><strong>tag</strong>:String</dt>
+                                            <dd>'tag' 与游戏相关（例如： 'hard'）</dd>
+                                        </dl>
+                                    </div>
+
+                                    <div class="example">
+                                        <h4>示例：</h4>
+<blockquote class="code"><pre>MochiEvents.startPlay('hard');</pre></blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="method">
+                                <h3>endPlay</h3>
+                                <div class="function">
+                                    <div class="signature">
+                                        endPlay():void
+                                    </div>
+
+                                    <div class="description">
+                                        <h4>描述：</h4>
+                                        <p>
+                                            将游戏标记为完成。
+                                        </p>
+                                    </div>
+
+                                    <div class="example">
+                                        <h4>示例：</h4>
+<blockquote class="code"><pre>MochiEvents.endPlay();</pre></blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="method">
+                                <h3>trackEvent</h3>
+                                <div class="function">
+                                    <div class="signature">
+                                        trackEvent( tag:String, value:* ):void
+                                    </div>
+
+                                    <div class="description">
+                                        <h4>描述：</h4>
+                                        <p>
+                                            跟踪其他关联的事件
+                                        </p>
+                                    </div>
+
+                                    <div class="parameters">
+                                        <h4>参数：</h4>
+                                        <dl>
+                                            <dt><strong>tag</strong>:String</dt>
+                                            <dd>事件类型 'tag' 名称</dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><strong>value</strong>:* （可选）</dt>
+                                            <dd>与事件类型相关的值</dd>
+                                        </dl>
+                                    </div>
+
+                                    <div class="example">
+                                        <h4>示例：</h4>
+<blockquote class="code"><pre>MochiEvents.trackEvent( 'getGrenades', 5 );</pre></blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+
+
+                                        <!--! MochiSocial -->
+                                        <div class="section_1">
+                                            <a name="MochiSocial"></a>
+                                            <h1>Mochi 社交 API 说明</h1>
+
+                                            <div class="section_2">
+                                                <a name="social_ov"></a>
+                                                <h2>1.1 概述</h2>
+                                                <p>
+Mochi 社交 API 为开发者提供了一个在游戏外建立登录系统，远程跟踪用户进度的方法。 此功能曾经是 Mochi 钱币 API
+的一部分，但现在已分离为独立的 API。 </p>
+                                            </div>
+
+                                            <div class="section_2">
+                                                <a name="social_pre"></a>
+                                                <h2>1.2 前提条件</h2>
+                                                <p>
+                                                    Mochi API 与 Flash Player 7 之前的版本不兼容，并且不再兼容 ActionScript 1.0。
+                                                </p>
+
+                                                <h4>安装 Mochi 社交 API</h4>
+                                                <ol>
+                                                    <li>下载并解压缩最新的 Mochi API。 </li>
+                                                    <li>复制 mochi 文件夹并将其粘贴到您的游戏根目录。 一般情况下这与您的游戏的 FLA 文件目录相同。</li>
+                                                </ol>
+
+                                                <div class="download">
+                                                    <a href="https://www.mochimedia.com/dl/MochiAPI_v3_8.zip">Mochi API v3.8</a>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="section_2">
+                                                <a name="social_services"></a>
+                                                <h2>1.3 连接到 Mochi 服务</h2>
+
+                                                <div class="method">
+                                                    <h3>连接</h3>
+                                                    <div class="function">
+                                                        <div class="signature">
+                                                            connect(id:String, clip:Object, onError:Function):void
+                                                        </div>
+
+                                                        <div class="description">
+                                                            <h4>描述：</h4>
+                                                            <p>
+从 Mochi 服务器中获取并初始化 MochiServices.swf。 任何 API 的调用都只能在 MochiServices.swf
+下载并初始化后才能被执行。 </p>
+                                                        </div>
+
+                                                        <div class="parameters">
+                                                            <h4>参数：</h4>
+                                                            <dl>
+                                                                <dt><strong>id</strong>:String</dt>
+                                                                <dd>Mochi 游戏 ID</dd>
+                                                                <dt><strong>clip</strong>:Object</dt>
+                                                                <dd>在movieclip或Sprite 中加载 API（除 AS3 外，其他为可选项，默认到 _root）。 在 as3 中，剪辑必须是动态的。</dd>
+                                                                <dt><strong>onError</strong>:Function</dt>
+                                                                <dd>
+如果 Mochi 服务无法连接到服务器或在任何其他API调用中发生任何 IO 错误，将调用这种方法。onerror
+的处理程序将接收描述该错误的状态代码。 可能发生的错误： <ul>
+                                                                        <li>NotConnected — 服务无法连接或无法加载当前movieclip。</li>
+                                                                        <li>IOError — 服务器已经连接，但是无法和服务器交互。</li>
+                                                                    </ul>
+                                                                </dd>
+                                                            </dl>
+                                                        </div>
+
+
+
+
+                                                        <div class="example">
+                                                            <h4>AS3 示例：</h4>
+
+                    <blockquote class="code"><pre>mochi.as3.MochiServices.connect("xxx", root, onConnectError);  // use mochi.as2.MochiServices.connect for AS2 API
+
+public function onConnectError(status:String):void {
+    <span class="comment">// handle error here...</span>
+}
+                    </pre></blockquote>
+
+                                                            <p>… 在引号中的 ‘xxx’ 代表您的 Mochi 游戏 ID。 测试您的视频，然后应该会在您的输出面板中看到以下内容：</p>
+
+                                                            <blockquote class="code trace">
+                                                                Mochi 服务连接…<br> 等待 Mochi 服务连接…<br> 已连接！
+                                                            </blockquote>
+
+                                                            <p>
+如果您看到以上内容，那意味着“mochi”文件夹的目录正确，并为 Mochi 服务提供了正确的 Mochi 游戏
+ID。请记住，您需要在游戏开始时调用一次connect，然后才能在您的游戏中连接 Mochi 服务，调用其它的API。 </p>
+
+                                                            <h3>AS3 要求 - <em>剪辑</em> 参数</h3>
+                                                            <p>
+在 ActionScript 3 中，Stage的root无法进行全局访问。 如果一个子画画或movieclip没有权限访问 root
+或已添加到显示列表的另一个容器，那么它不能直观地被显示在Stage上。基于这个原因，在调用 MochiServices.connect
+时，您必须向剪辑参数提供您的Stage的root或对子Stage的Sprite 或 视频剪辑的引用。 请注意传递的剪辑也必须是动态的。 </p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="section_2">
+                                                <a name="social_login"></a>
+                                                <h2>1.4 显示通用用户登录窗体部件</h2>
+                                                <p>
+登录窗体部件可以让玩家注册或登录并授予他们访问自己的个人资料、物品、钱币和用户特定数据的权限。
+如果该玩家之前已经登录，窗体部件将显示他们的个人资料图片、物品和钱币。 登录窗体部件大小为
+200x25，并且自动将自己放置在Stage的左上角。 为保持一致，我们推荐在所有游戏中使用该布局，但是您可以进入自定义布局进行您的特定设计。
+如果您当前使用的是 Mochi 币一体化，该窗体部件也可以打开一个店面。该按钮将只调用 MochiCoins.showStore (
+{tags: ['widget'] } )，所以您必须将 'widget' 标签添加到您希望出现在店面中的任何物品上。
+这是一项可选服务，每当您执行显示登录窗体部件时必须监听 ITEM_NEW 事件。 </p>
+                                                <p class="codetext">导入 mochi.as3.*;</p>
+                                                <p class="codetext">MochiSocial.showLoginWidget();   // 您还可以传递 a x,y - MochiSocial.showLoginWidget({x:330, y:360})</p>
+                                                <p>您可以使用以下代码隐藏登录窗体部件。   该窗体部件将仍然被加载，但将不可视。</p>
+                                                <p class="codetext">MochiSocial.hideLoginWidget();</p>
+                                            </div>
+
+                                            <div class="section_2">
+                                                <a name="social_event"></a>
+                                                <h2>1.5 监听事件</h2>
+                                                <p>
+一旦玩家登录，您就将获得一个 LOGGED_IN 事件。 如果玩家之前登录，并有一个有效的会话，这可能会在
+MochiServices.connect() 调用后迅速发生，所以应该在你调用 MochiServices.connect()
+前为这些事件启用监听器 </p>
+                                                <p class="codetext">导入 mochi.as3.*; // 导入 mochi.as2.* 如果使用 AS2 API</p>
+
+                        <blockquote class="code"><pre>MochiSocial.addEventListener(MochiSocial.ERROR, handleError);
+MochiSocial.addEventListener(MochiSocial.LOGGED_IN, loggedIn);
+
+MochiServices.connect("xxx", root, onError);
+
+public function loggedIn(event:Object):void {
+    // receive {name: name, uid: uid, profileImgURL: profileImgURL, hasCoins: True, userProperties: { hitPoints: 120 }}
+    trace("Hello " + event.name);
+}
+                        </pre></blockquote>
+
+                                                <p>
+应该指出的是，随事件派遣的参数是一个对象，而不是事件类的继承。 而对象以与事件对象相似的方式工作，它们不包含与内置 AS3
+事件相同的参数和属性。 同样，您将无法使用 instanceof、is、as 和 typeof 来确定哪些类型的事件已被传递。 </p>
+                                            </div>
+
+                                                                <div class="section_2">
+                                                                    <a name="social_userproperties"></a>
+                                                                    <h2>1.6 保存永久玩家属性</h2>
+                                                                    <p>
+Mochi 社交 API 将允许您永久保存玩家属性。 这可以用于保存任何可以在后续的游戏中获取的自定义的玩家状态。
+举例说明，您希望保存玩家的健康状况、经验或通关次数，这样可以在用户以后返回游戏时为其提供更持续的游戏体验。以下的示例将保存指定给登录玩家的键值
+对。只可以保存为数字、字符串、布尔和数组类型的值。 目前每用户每游戏可保存的限制为 4KB（总系列大小）。 </p>
+                                                                    <p class="codetext">MochiSocial.saveUserProperties({ hitPoints: 120, levelsFinished: [1, 2, 4, 6] });</p>
+以上调用将覆盖之前可能已供玩家使用的属性对象。 在后续的 MochiSocial.LOGGED_IN 事件中，该对象将会被传递回来。 <blockquote class="code"><pre>MochiSocial.addEventListener(MochiSocial.LOGGED_IN, loggedIn);
+
+public function loggedIn(ev:Object):void {
+    // receive {name: name, uid: uid, profileImgURL: profileImgURL, hasCoins: True, userProperties: { hitPoints: 120 .. }}
+    var userProperties:Object = ev.userProperties
+}
+                                                                    </pre></blockquote>
+                                                                    <p>
+MochiSocial.PROPERTIES_SAVED 事件将在属性对象 保存成功后发生。 MochiSocial.ERROR 的
+MochiSocial.PROPERTIES_SIZE 类型或 MochiSocial.NO_USER
+类型将在属性对象过大时或没有用户登录时发生，请参阅 <a href="#social_events">1.10 事件定义</a>。
+                                                                    </p>
+                                                                    <blockquote class="code"><pre>MochiSocial.addEventListener(MochiSocial.PROPERTIES_SAVED, properties_saved);
+MochiSocial.addEventListener(MochiSocial.ERROR, handleError);
+
+public function properties_saved(ev:Object):void {
+    trace("Properties Saved!");
+}
+public function handleError(ev:Object):void {
+    switch (ev.type) {
+        case MochiSocial.PROPERTIES_SIZE:
+            trace("Properties too large.");
+            break;
+        case MochiSocial.NO_USER:
+            trace("No user logged in.");
+            break;
+    }
+}
+                                                                    </pre></blockquote>
+
+                                                                </div>
+
+                                            <div class="section_2">
+                                                <a name="social_api"></a>
+                                                <h2>1.7 API</h2>
+
+                                                <div class="method">
+                                                    <h3>showLoginWidget</h3>
+                                                    <div class="function">
+                                                        <div class="signature">
+                                                            showLoginWidget(options:Object):void
+                                                        </div>
+
+                                                        <div class="description">
+                                                            <h4>描述：</h4>
+                                                            <p>
+                                                                显示登录窗体部件。
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="parameters">
+                                                            <h4>参数：</h4>
+                                                            <dl>
+                                                                <dt><strong>x</strong>:Number</dt>
+                                                                <dd>x 坐标</dd>
+                                                            </dl>
+                                                            <dl>
+                                                                <dt><strong>y</strong>:Number</dt>
+                                                                <dd>y 坐标</dd>
+                                                            </dl>
+                                                        </div>
+
+                                                        <div class="example">
+                                                            <h4>示例：</h4>
+
+                        <blockquote class="code"><pre>MochiCoins.showLoginWidget({ x:150, y: 150 });</pre></blockquote>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="method">
+                                                    <h3>hideLoginWidget</h3>
+                                                    <div class="function">
+                                                        <div class="signature">
+                                                            hideLoginWidget():void
+                                                        </div>
+
+                                                        <div class="description">
+                                                            <h4>描述：</h4>
+                                                            <p>
+                                                                隐藏登录窗体部件。
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="method">
+                                                    <h3>requestLogin</h3>
+                                                    <div class="function">
+                                                        <div class="signature">
+                                                            requestLogin():void
+                                                        </div>
+
+                                                        <div class="description">
+                                                            <h4>描述：</h4>
+                                                            <p>
+                                                                为用户提供模态登录画面。
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="method">
+                                                    <h3>saveUserProperties</h3>
+                                                    <div class="function">
+                                                        <div class="signature">
+                                                            saveUserProperties(properties:Object):void
+                                                        </div>
+
+                                                        <div class="description">
+                                                            <h4>描述：</h4>
+                                                            <p>
+该方法允许您保存可以在后续的游戏中获取的自定义的用户状态。 通过将带有键值对的对象传递给该方法完成。 在后续的
+MochiSocial.LOGGED_IN 事件中，该对象将被传递回来（请参阅<a href="#social_events">1.10 事件定义</a>中的 MochiSocial.LOGGED_IN）。
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="parameters">
+                                                            <h4>参数：</h4>
+                                                            <dl>
+                                                                <dt><strong>properties</strong>:Object</dt>
+                                                                <dd>定义键值对的用户 Object。  只可以保存类型 Number、String、Boolean、Array 和 Object 的值。   目前每用户每游戏可保存的限制为 4KB（总系列大小）。</dd>
+                                                            </dl>
+                                                        </div>
+
+                                                        <div class="parameters">
+                                                            <h4>事件：</h4>
+                                                            <dl>
+                                                                <dt><strong>MochiSocial.PROPERTIES_SAVED</strong></dt>
+                                                                <dd>用户属性保存成功。  请参阅<a href="#social_events">1.10 事件定义</a></dd>
+                                                            </dl>
+                                                        </div>
+
+                                                        <div class="example">
+                                                            <h4>示例：</h4>
+
+                                                            <blockquote class="code"><pre>MochiSocial.saveUserProperties({ hitPoints: 120 });</pre></blockquote>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div py:if="beta"><!-- BETA DOCUMENTATION -->
+                                                <div class="section_2">
+                                                    <a name="social_getuserinfo"></a>
+                                                    <h2>1.8 获取用户信息</h2>
+                                                    <p>
+Mochi 社交现在将允许开发者获取有关 Mochi 游戏用户的信息。
+这其中包括当前登录的用户的好友、公开的个人资信息和用户的游戏统计数据等。 这些有助于为您的游戏加入丰富的社会体验。 </p>
+                                                    <p> 
+                                                        这个新API包含一些基本调用。  这些调用都异步进行。
+                                                    </p>
+
+                                                    <div class="method">
+                                                        <h3>getFriendsList</h3>
+                                                        <div class="function">
+                                                            <div class="signature">
+                                                                getFriendsList():void
+                                                            </div>
+
+                                                            <div class="description">
+                                                                <h4>描述：</h4>
+                                                                <p>
+                                                                    获取当前登录的用户好友的名单。                                          
+                                                                </p>
+                                                                <strong>注意： 为了安全，开发者仅具有用户的 Mochi 游戏好友的访问权限</strong>
+                                                            </div>
+
+                                                            <div class="example">
+                                                                <h4>示例：</h4>
+
+        <blockquote class="code"><pre>        MochiSocial.addEventListener( MochiSocial.LOGGED_IN, loginEvent );
+        MochiSocial.addEventListener( MochiSocial.FRIEND_LIST, dumpMyFriends );
+
+        private function loginEvent(event:Object):void {
+            MochiSocial.getFriendsList();
+        }
+
+        private function dumpMyFriends(event:Object):void {
+            for( var k:String in event.friends )
+                trace("User has friend: ", event.friends[k].name );
+        }
+        </pre></blockquote>
+        <p>
+            要获取更多事件回调的详细描述，请参阅： <a href="#social_events">1.10 事件定义</a>。
+        </p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="method" py:if="False"> <!-- FUTURE! -->
+                                                        <h3>getProfileData</h3>
+                                                        <div class="function">
+                                                            <div class="signature">
+                                                                getProfileData(properties:Object):void
+                                                            </div>
+
+                                                            <div class="description">
+                                                                <h4>描述：</h4>
+                                                                <p>
+                                                                    获取有关 Mochi 游戏用户的公开的个人资料信息
+                                                                </p>
+                                                            </div>
+
+                                                            <div class="parameters">
+                                                                <h4>参数：</h4>
+                                                                <dl>
+                                                                    <dt><strong>uid</strong>:Object</dt>
+                                                                    <dd>获取信息的用户 ID </dd>
+                                                                </dl>
+                                                            </div>
+
+
+                                                            <div class="example">
+                                                                <h4>示例：</h4>
+
+            <blockquote class="code"><pre>    MochiSocial.addEventListener( MochiSocial.LOGGED_IN, loginEvent );
+    MochiSocial.addEventListener( MochiSocial.FRIEND_LIST, dumpMyFriends );
+    MochiSocial.addEventListener( MochiSocial.PROFILE_DATA, profileData );
+
+    private function loginEvent(event:Object):void {
+    MochiSocial.getFriendsList();
+    }
+
+    private function dumpMyFriends(event:Object):void {
+    for( var k:String in event.friends )
+    MochiSocial.getProfileData( { uid: k } );
+    }
+
+    private function profileData(event:Object):void {
+        // TODO: DOCUMENT PROFILE DATA EVENT
+    }
+            </pre></blockquote>
+            <p>
+                要获取更多事件回调的详细描述，请参阅： <a href="#social_events">1.10 事件定义</a>。
+            </p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="method" py:if="False"> <!-- FUTURE! -->
+                                                        <h3>getGameplayData</h3>
+                                                        <div class="function">
+                                                            <div class="signature">
+                                                                getGameplayData(properties:Object):void
+                                                            </div>
+
+                                                            <div class="description">
+                                                                <h4>描述：</h4>
+                                                                <p>
+                                                                    获取有关玩家游戏设置的指定信息
+                                                                </p>
+                                                            </div>
+
+                                                            <div class="parameters">
+                                                                <h4>参数：</h4>
+                                                                <dl>
+                                                                    <dt><strong>uid</strong>:Object</dt>
+                                                                    <dd>获取信息的用户 ID </dd>
+                                                                </dl>
+                                                            </div>
+
+                                                            <div class="example">
+                                                                <h4>示例：</h4>
+
+                <blockquote class="code"><pre>        MochiSocial.addEventListener( MochiSocial.LOGGED_IN, loginEvent );
+        MochiSocial.addEventListener( MochiSocial.FRIEND_LIST, dumpMyFriends );
+        MochiSocial.addEventListener( MochiSocial.GAMEPLAY_DATA, gameplayData );
+
+        private function loginEvent(event:Object):void {
+        MochiSocial.getFriendsList();
+        }
+
+        private function dumpMyFriends(event:Object):void {
+        for( var k:String in event.friends )
+        MochiSocial.getGameplayData( { uid: k } );
+        }
+
+        private function gameplayData(event:Object):void {
+        // TODO: DOCUMENT GAMEPLAY DATA EVENT
+        } 
+                </pre></blockquote>
+                <p>
+                    要获取更多事件回调的详细描述，请参阅： <a href="#social_events">1.10 事件定义</a>。
+                </p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+                                                </div>
+
+                                                <div class="section_2">
+                                                    <a name="social_socialaction"></a>
+                                                    <h2>1.9 使用户社区化</h2>
+                                                    <p>
+除可以浏览有关用户好友信息外，现在为开发者提供了便于用户互相交流的API。 这包括复杂的信息传递、Feeds以及完成 actions.that
+附有可选奖励的邀请 </p>
+                                                    <p>
+                                                        <strong>注意：由于用户完成了一个操作而奖励他是可以的，但由于用户没有完成一个操作而惩罚他是违规的，例如请求用户邀请其好友继续玩游戏。</strong>
+                                                    </p>
+                                                    <p>
+                                                        目前，我们的API允许开发者提供以下功能：用户可以发送邀请， 发送消息到玩家的群体，并最终反馈给开发者。
+                                                    </p>
+
+                                                    <div class="method" py:if="False"> <!-- FUTURE! -->
+                                                        <h3>sendFeedback</h3>
+                                                        <div class="function">
+                                                            <div class="signature">
+                                                                sendFeedback(properties:Object):void
+                                                            </div>
+
+                                                            <div class="description">
+                                                                <h4>描述：</h4>
+                                                                <p>
+                                                                    给开发者发送有关他们游戏的反馈
+                                                                </p>
+                                                            </div>
+
+                                                            <div class="parameters">
+                                                                <h4>参数：</h4>
+                                                                <dl>
+                                                                    <dt><strong>uid</strong>:Object</dt>
+                                                                    <dd>获取信息的用户 ID </dd>
+                                                                </dl>
+                                                            </div>
+
+                                                            <div class="example">
+                                                                <h4>示例：</h4>
+
+                                                                <blockquote class="code"><pre>                                                                </pre></blockquote>
+                                                                <p>
+                                                                要获取更多事件回调的详细描述，请参阅： <a href="#social_events">1.10 事件定义</a>。
+                                                                </p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+
+                                                    <div class="method">
+                                                        <h3>postToStream</h3>
+                                                        <div class="function">
+                                                            <div class="signature">
+                                                                postToStream(properties:Object):void
+                                                            </div>
+
+                                                            <div class="description">
+                                                                <h4>描述：</h4>
+                                                                <p>
+                                                                    允许玩家将当前游戏的留言发布到他们的群体
+                                                                </p>
+                                                            </div>
+
+                                                            <div class="parameters">
+                                                                <h4>参数：</h4>
+                                                                <dl>
+                                                                    <dt><strong>channel</strong>:数组（可选）</dt>
+                                                                    <dd>群体，消息被发布到该群体（默认为玩家的群体） </dd>
+                                                                    <dt><strong>item</strong>:字符串（可选）</dt>
+                                                                    <dd>可选的钱币道具，用于奖励那些将道具发给他们的群体的用户 </dd>
+                                                                    <dt><strong>title</strong>:字符串（可选）</dt>
+                                                                    <dd>操作窗口的标题</dd>
+                                                                    <dt><strong>thumbURL</strong>:字符串（可选）</dt>
+                                                                    <dd>显示在标题旁边的图片</dd>
+                                                                    <dt><strong>message</strong>:字符串（可选）</dt>
+                                                                    <dd>发布到群体的默认消息</dd>
+                                                                    <dt><strong>sandbox</strong>:布尔值（可选）</dt>
+                                                                    <dd>当设置为true时，表面上显示为发送成功，但实际上请求被阻止了</dd>
+                                                                </dl>
+                                                            </div>
+
+                                                            <div class="example">
+                                                                <h4>示例：</h4>
+
+                                                                <blockquote class="code"><pre>function doStreamPost( e:Event = null ):void
+{
+    MochiSocial.addEventListener( MochiSocial.ACTION_COMPLETE, onStreamPost );
+    MochiSocial.addEventListener( MochiSocial.ACTION_CANCELED, onCancel );
+    MochiSocial.postToStream( {} );
+}
+
+function onStreamPost( e:Object ):void
+{
+    // Thanks for posting to your stream!                                                                             
+    onCancel(e);
+}
+
+function onCancel( e:Object ):void
+{
+    MochiSocial.removeEventListener( MochiSocial.ACTION_COMPLETE, onStreamPost );
+    MochiSocial.removeEventListener( MochiSocial.ACTION_CANCELED, onCancel );
+}
+
+                                                                </pre></blockquote>
+                                                                <p>
+                                                                要获取更多事件回调的详细描述，请参阅： <a href="#social_events">1.10 事件定义</a>。
+                                                                </p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+                                                    <div class="method">
+                                                        <h3>inviteFriends</h3>
+                                                        <div class="function">
+                                                            <div class="signature">
+                                                                inviteFriends(properties:Object):void
+                                                            </div>
+
+                                                            <div class="description">
+                                                                <h4>描述：</h4>
+                                                                <p>
+                                                                    允许用户邀请其他人进行当前的游戏。
+                                                                </p>
+                                                            </div>
+
+                                                            <div class="parameters">
+                                                                <h4>参数：</h4>
+                                                                <dl>
+                                                                    <dt><strong>friends</strong>:Array（可选）</dt>
+                                                                    <dd>用户 id 预选的好友名单</dd>
+                                                                    <dt><strong>item</strong>:String（可选）</dt>
+                                                                    <dd>用于奖励用户发送和接收邀请的可选的钱币物品</dd>
+                                                                    <dt><strong>title</strong>:String（可选）</dt>
+                                                                    <dd>邀请窗口的标题</dd>
+                                                                    <dt><strong>thumbURL</strong>:String（可选）</dt>
+                                                                    <dd>显示在标题旁边的图片</dd>
+                                                                    <dt><strong>message</strong>:String（可选）</dt>
+                                                                    <dd>附加到邀请的默认消息</dd>
+                                                                    <dt><strong>sandbox</strong>:Boolean（可选）</dt>
+                                                                    <dd>当真实的时候，阻止要被发送的实际邀请，但是表面上通讯成功</dd>
+                                                                </dl>
+                                                            </div>
+
+                                                            <div class="example">
+                                                                <h4>示例：</h4>
+
+                                                                <blockquote class="code"><pre>function doInvitation( e:Event = null ):void
+{
+    MochiSocial.addEventListener( MochiSocial.ACTION_COMPLETE, onInvite );
+    MochiSocial.addEventListener( MochiSocial.ACTION_CANCELED, onCancel );
+    MochiSocial.inviteFriends( {} );
+}
+
+function onInvite( e:Object ):void
+{
+    // Thanks for inviting your friends!
+    onCancel(e);
+}
+
+function onCancel( e:Object ):void
+{
+    MochiSocial.removeEventListener( MochiSocial.ACTION_COMPLETE, onInvite );
+    MochiSocial.removeEventListener( MochiSocial.ACTION_CANCELED, onCancel );
+}
+                                                                </pre></blockquote>
+                                                                <p>
+                                                                要获取更多事件回调的详细描述，请参阅： <a href="#social_events">1.10 事件定义</a>。
+                                                                </p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+                                                    <div class="method">
+                                                        <h3>followRequest</h3>
+                                                        <div class="function">
+                                                            <div class="signature">
+                                                                followRequest(properties:Object):void
+                                                            </div>
+
+                                                            <div class="description">
+                                                                <h4>描述：</h4>
+                                                                <p>
+                                                                    提供玩家追踪开发者的流媒体的能力。
+                                                                </p>
+                                                            </div>
+
+                                                            <div class="parameters">
+                                                                <h4>参数：</h4>
+                                                                <dl>
+                                                                    <dt><strong>channel</strong>:Object（可选）</dt>
+                                                                    <dd>要追踪的频道（默认游戏开发者的频道）</dd>
+                                                                    <dt><strong>sandbox</strong>:Boolean（可选）</dt>
+                                                                    <dd>当真实的时候，阻止要被发送的实际邀请，但是表面上通讯成功</dd>
+                                                                </dl>
+                                                            </div>
+
+                                                            <div class="example">
+                                                                <h4>示例：</h4>
+
+                                                                <blockquote class="code"><pre>function doFollowRequest( e:Event = null ):void
+{
+    MochiSocial.addEventListener( MochiSocial.ACTION_COMPLETE, onFollow );
+    MochiSocial.addEventListener( MochiSocial.ACTION_CANCELED, onCancel );
+    MochiSocial.inviteFriends( {} );
+}
+
+function onFollow( e:Object ):void
+{
+    // Thanks for following the stream!
+    onCancel(e);
+}
+
+function onCancel( e:Object ):void
+{
+    MochiSocial.removeEventListener( MochiSocial.ACTION_COMPLETE, onFollow );
+    MochiSocial.removeEventListener( MochiSocial.ACTION_CANCELED, onCancel );
+}
+                                                                </pre></blockquote>
+                                                                <p>
+                                                                要获取更多事件回调的详细描述，请参阅： <a href="#social_events">1.10 事件定义</a>。
+                                                                </p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+                                                </div>
+
+                                            </div><!--! -->
+
+                                            <div class="section_2">
+                                                <a name="social_events"></a>
+                                                <h2>1.10 事件定义</h2>
+                                                <p>事件以及您的事件处理器将接收的参数如下</p>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.LOGGED_IN</strong>
+{name: "name", uid: unique_identifier, profileImgURL:
+url_of_player_image, hasCoins: True, userProperties: {hitPoints: 120},
+api_token: "***"}</dt>
+                                                    <dd>玩
+家登录。该事件将带有以上键的对象传递给您的事件监听器。 userProperties 键是您通过调用saveUserProperties
+保存的每个用户每个游戏的属性包。。 如果玩家还处于登录状态，调用 MochiServices.connect() 后再调用该事件。</dd>
+                                                </dl>
+
+                                                <dl>                        
+                                                    <dt><strong>MochiSocial.FRIEND_LIST</strong> {friends:{ "user_id":{ name:"User Name", thumbURL: "http://..." } }</dt>
+                                                    <dd>游戏好友图表。该事件是对 MochiSocial.getFriendsList() 调用的响应。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.PROFILE_DATA</strong> {<!-- TODO -->}</dt>
+                                                    <dd>用户个人资料信息。  该事件是对 MochiSocial.getProfileData() 调用的响应。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.GAMEPLAY_DATA</strong> {<!-- TODO -->}</dt>
+                                                    <dd>用户游戏设置信息。  该事件是对 MochiSocial.getGameplayData() 调用的响应。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.ACTION_CANCELED</strong> { call: 'inviteFriends' or 'postToStream' or 'followRequest' or 'sendFeedback' }</dt>
+                                                    <dd>用户取消Social的操作。  当用户选择不完成 MochiSocial 操作表格时，该事件被激活。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.ACTION_COMPLETE</strong> { call: 'inviteFriends' or 'postToStream' or 'followRequest' or 'sendFeedback' }</dt>
+                                                    <dd>用户完成Social的操作。  当用户完成 MochiSocial 操作表格时，该事件被激活。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.LOGGED_OUT</strong></dt>
+                                                    <dd>玩家注销。 如果玩家还处于未登录状态，调用 MochiServices.connect() 后再调用该事件。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.LOGIN_SHOW</strong></dt>
+                                                    <dd>登录窗体部件显示。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.LOGIN_HIDE</strong></dt>
+                                                    <dd>登录窗体部件隐藏。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.PROFILE_SHOW</strong></dt>
+                                                    <dd>个人资料/库存画面显示。  玩家浏览个人资料/库存。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.PROFILE_HIDE</strong></dt>
+                                                    <dd>个人资料/库存画面隐藏。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.PROPERTIES_SAVED</strong></dt>
+                                                    <dd>用户属性保存成功。  它发生在调用 MochiCoins.saveUserProperties() 后。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.WIDGET_LOADED</strong></dt>
+                                                    <dd>登
+录 / 商店 SWF 加载。 使用该事件可以知道何时加载了登录窗体部件。
+例如，您可能希望直到登录之前都显示启动画面，以防止出现在登录窗体部件的视觉延迟。 在您的游戏的引导界面调用
+MochiServices.connect() 能在需要时前加载窗体部件。</dd>
+                                                </dl>
+
+                                                <dl>
+                                                    <dt><strong>MochiSocial.ERROR</strong> { type: MochiSocial.IO_ERROR }</dt>
+                                                    <dd>发生错误。  类型值如下：
+                                                        <ul>
+                                                            <li>MochiSocial.IO_ERROR: 出现网络错误。</li>
+                                                            <li>MochiSocial.PROPERTIES_SIZE: MochiCoins.saveUserProperties() 调用失败。 属性尺寸过大。  当前限制为 4KB（总系列大小）。</li>
+                                                            <li>MochiSocial.NO_USER: MochiCoins.saveUserProperties() 调用失败。  没有用户登录。</li>
+                                                        </ul>
+                                                    </dd>
+                                                </dl>
+                                            </div>
+                                            <div class="section_2">
+                                                <a name="social_mochiuserdata"></a>
+                                                <h2>1.11 通用数据存储（AS3 持久性专用）</h2>
+                                                <p>
+                                                    在 AS3 编写的使用了 Mochi 社交 API 的游戏有一个持久性 API，它远远超出了 userProperties 的限制范围。
+                                                </p>
+                                                <p>
+使用该API，您可以存储每个用户的多个键，不受任何4kb的限制。 数据经压缩后保存为 AMF3 的格式，所以您可以高效存储或传输由
+SharedObject 保存的任何数据。 </p>
+                                                <p>
+当用户登录时，这个 API 唯一可用的。如果您在接收 MochiSocial.LOGGED_IN 事件之前调用或在
+MochiSocial.LOGGED_OUT 事件发生后调用，将会失败。 </p>
+                                                <div class="method">
+                                                    <h3>get</h3>
+                                                    <div class="function">
+                                                        <div class="signature">
+                                                            get(key:String, callback:Function):void
+                                                        </div>
+
+                                                        <div class="description">
+                                                            <h4>描述：</h4>
+                                                            <p>
+                                                                获取存储在该用户的<em>key</em>的数据，其结果将会调用<em>callback(userData)</em> 。 如果<em>key</em>上没有存储值，userData.data 将为空。
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="parameters">
+                                                            <h4>参数：</h4>
+                                                            <dl>
+                                                                <dt><strong>key</strong>:String</dt>
+                                                                <dd>为该用户获取key的名称</dd>
+                                                            </dl>
+                                                            <dl>
+                                                                <dt><strong>callback(userData:MochiUserData):void</strong>:Function</dt>
+                                                                <dd>该函数被成功或错误的调用。 如果成功，userData.error 为空，并将 userData.data 设置为登录用户的key的值。 如果键之前已经进行设置，userData.data 为空。
+
+                                                                    如果发生错误，userData.error 将是关于错误信息的描述。</dd>
+                                                            </dl>
+                                                        </div>
+
+                                                        <div class="example">
+                                                            <h4>示例：</h4>
+
+                        <blockquote class="code"><pre>                        private function loginEvent(event:Object):void {
+                            MochiUserData.get("login_count", gotLoginCount);
+                        }
+
+                        private function gotLoginCount(userData:MochiUserData):void {
+                            if (userData.error) {
+                                trace("[ERROR] could not fetch login_count: " + userData.error);
+                                return;
+                            }
+                            var login_count:Number = 0;
+                            if (userData.data !== null) {
+                                login_count = login_count.data;
+                            }
+                            trace("This user has logged in " + login_count + " times");
+
+                            MochiUserData.put("login_count", login_count + 1, putLoginCount);
+                        }
+
+                        private function putLoginCount(userData:MochiUserData):void {
+                            if (userData.error) {
+                                trace("[ERROR] could not put login_count: " + userData.error);
+                                return;
+                            }
+                            trace("Successfully updated login_count for user");
+                        }
+                        </pre></blockquote>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <div class="method">
+                                                    <h3>put</h3>
+                                                    <div class="function">
+                                                        <div class="signature">
+                                                            put(key:String, value:*, callback:Function):void
+                                                        </div>
+
+                                                        <div class="description">
+                                                            <h4>描述：</h4>
+                                                            <p>
+                                                                为用户在<em>key</em>上存储<em>值</em>，调用 <em>callback(userData)</em> 用于返回成功或错误。 如果 put 成功，userData.error 将为空。
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="parameters">
+                                                            <h4>参数：</h4>
+                                                            <dl>
+                                                                <dt><strong>key</strong>:String</dt>
+                                                                <dd>为该用户获取的key的名称</dd>
+                                                            </dl>
+                                                            <dl>
+                                                                <dt><strong>value</strong>:*</dt>
+                                                                <dd>存储在该用户key上的值。 可以是任何由 <a href="http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/net/ObjectEncoding.html" target="_blank">AMF3</a> 序列化的值（换句话说，就是您可以放在 SharedObject 内的任何值）。</dd>
+                                                            </dl>
+                                                            <dl>
+                                                                <dt><strong>callback(userData:MochiUserData):void</strong>:Function</dt>
+                                                                <dd>该函数被成功或错误的调用。一旦成功，userData.error 为空。 如果发生错误，userData.error 将是关于错误信息的描述。</dd>
+                                                            </dl>
+                                                        </div>
+
+                                                        <div class="example">
+                                                            <h4>示例：</h4>
+
+                        <blockquote class="code"><pre>                        private function loginEvent(event:Object):void {
+                            MochiUserData.get("login_count", gotLoginCount);
+                        }
+
+                        private function gotLoginCount(userData:MochiUserData):void {
+                            if (userData.error) {
+                                trace("[ERROR] could not fetch login_count: " + userData.error);
+                                return;
+                            }
+                            var login_count:Number = 0;
+                            if (userData.data !== null) {
+                                login_count = login_count.data;
+                            }
+                            trace("This user has logged in " + login_count + " times");
+
+                            MochiUserData.put("login_count", login_count + 1, putLoginCount);
+                        }
+
+                        private function putLoginCount(userData:MochiUserData):void {
+                            if (userData.error) {
+                                trace("[ERROR] could not put login_count: " + userData.error);
+                                return;
+                            }
+                            trace("Successfully updated login_count for user");
+                        }
+                        </pre></blockquote>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                    </div>
+
+                    <!--! MochiCoins -->
+                    <div class="section_1">
+                        <a name="MochiCoins"></a>
+                        <h1>Mochi 钱币 API 说明</h1>
+
+                        <div class="section_2">
+                            <a name="coins_ov"></a>
+                            <h2>1.1 概述</h2>
+                            <p>
+Mochi 钱币 API 提供了向玩家出售游虚拟物品的简便方法，例如通关、装备、特殊武器以及秘籍。
+我们提供了安全登录并且在服务端集中存储玩家数据,所以无论玩家在任何地方玩您的游戏，游戏的状态和玩家数据都能被保存。 </p>
+                        </div>
+
+                        <div class="section_2">
+                            <a name="coins_pre"></a>
+                            <h2>1.2 前提条件</h2>
+                            <p>
+                                Mochi API与 Flash Player 7 之前的版本不兼容，并且不再兼容 ActionScript 1.0。
+                            </p>
+
+                            <h4>安装钱币API</h4>
+                            <ol>
+                                <li>下载并解压缩最新的 Mochi API。 </li>
+                                <li>复制 mochi 文件夹并将其粘贴到您的游戏根级目录。一般情况下这与您的游戏的 FLA 文件目录相同。</li>
+                                <li>在您的 Mochi 开发者账户创建商店并添加物品。</li>
+                            </ol>
+
+                            <div class="download">
+                                <a href="https://www.mochimedia.com/dl/MochiAPI_v3_8.zip">Mochi API v3.8</a>
+                            </div>
+
+                        </div>
+
+                        <div class="section_2">
+                            <a name="coins_services"></a>
+                            <h2>1.3 连接到 Mochi 服务</h2>
+
+                            <div class="method">
+                                <h3>连接</h3>
+                                <div class="function">
+                                    <div class="signature">
+                                        connect(id:String, clip:Object, onError:Function):void
+                                    </div>
+
+                                    <div class="description">
+                                        <h4>描述：</h4>
+                                        <p>
+                                            从 Mochi 服务器中获取并初始化 MochiServices.swf。 任何 API 的调用都只能在 MochiServices.swf 下载并初始化后才能被执行。
+                                        </p>
+                                    </div>
+
+                                    <div class="parameters">
+                                        <h4>参数：</h4>
+                                        <dl>
+                                            <dt><strong>id</strong>:String</dt>
+                                            <dd>Mochi 游戏 ID</dd>
+                                            <dt><strong>clip</strong>:Object</dt>
+                                            <dd>在movieclip或Sprite 中加载 API（除 AS3 外，其他为可选项，默认到 _root）。 在 as3 中，剪辑必须是动态的。</dd>
+                                            <dt><strong>onError</strong>:Function</dt>
+                                            <dd>
+如果 Mochi 服务无法连接到服务器或在任何其他API调用中发生任何 IO 错误，将调用这种方法。onerror
+的处理程序将接收描述该错误的状态代码。 可能发生的错误： <ul>
+                                                    <li>NotConnected — 服务无法连接或无法加载当前movieclip。</li>
+                                                    <li>IOError — 服务器已经连接，但是无法和服务器交互。</li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </div>
+
+
+
+
+                                    <div class="example">
+                                        <h4>AS3 示例：</h4>
+
+<blockquote class="code"><pre>mochi.as3.MochiServices.connect("xxx", root, onConnectError);  // use mochi.as2.MochiServices.connect for AS2 API
+
+public function onConnectError(status:String):void {
+    <span class="comment">// handle error here...</span>
+}
+</pre></blockquote>
+
+                                        <p>… 在引号中的 ‘xxx’ 代表您的 Mochi 游戏 ID。 测试您的视频，然后您应该会在您的输出面板中看到以下内容：</p>
+
+                                        <blockquote class="code trace">
+                                            Mochi 服务连接…<br> 等待 Mochi 服务连接…<br> 已连接！
+                                        </blockquote>
+
+                                        <p>
+如果您看到以上内容，那意味着“mochi”文件夹的目录正确，并为 Mochi 服务提供了正确的 Mochi 游戏
+ID。请记住，您需要在游戏开始时调用一次connect，然后才能在您的游戏中连接 Mochi 服务，调用其它的API。 </p>
+
+                                        <h3>AS3 要求 - <em>剪辑</em> 参数</h3>
+                                        <p>
+在 ActionScript 3 中，Stage的root无法进行全局访问。 如果一个子画画或movieclip没有权限访问 root
+或已添加到显示列表的另一个容器，那么它不能直观地被显示在Stage上。基于这个原因，在调用 MochiServices.connect
+时，您必须向剪辑参数提供您的Stage的root或对子Stage的Sprite 或movieclip的引用。 请注意传递的剪辑也必须是动态的。
+</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section_2">
+                            <a name="coins_event"></a>
+                            <h2>1.4 监听事件</h2>
+                            <p>
+一旦玩家登录，您将得到 LOGGED_IN 事件，接下来是 ITEM_OWNED 事件记录玩家拥有的每个物品。
+如果玩家之前登录并有一个有效的会话，这可能会在 MochiServices.connect() 调用后迅速发生，所以应该在你调用
+MochiServices.connect() 前为这些事件启用监听器。 当玩家购买一件物品时，会发生 ITEM_NEW
+事件，允许您为您的游戏登记该物品。 </p>
+                            <p class="codetext">导入 mochi.as3.*; // 导入 mochi.as2.* 如果使用 AS2 API</p>
+
+    <blockquote class="code"><pre>    MochiSocial.addEventListener(MochiSocial.ERROR, handleError);
+    MochiSocial.addEventListener(MochiSocial.LOGGED_IN, loggedIn);
+    MochiCoins.addEventListener(MochiCoins.ITEM_OWNED, registerItem);
+    MochiCoins.addEventListener(MochiCoins.ITEM_NEW, newItem);
+
+    MochiServices.connect("xxx", root, onError);
+
+    public function loggedIn(event:Object):void {
+        // receive {name: name, uid: uid, profileImgURL: profileImgURL, hasCoins: True, userProperties: { hitPoints: 120 }}
+        trace("Hello " + event.name);
+    }
+
+    public function registerItem(event:Object):void {
+        // receive {id: id, count: count}
+        trace("Player owns " + event.count + " of " + event.id);
+    }
+
+    public function newItem(event:Object):void {
+        // receive {id: id, count: count}
+        trace("Player just bought " + event.count + " of " + event.id);
+    }
+    </pre></blockquote>
+
+                            <p>
+应该指出的是，随事件派遣的参数是一个对象，而不是事件类的继承。 而对象以与事件对象相似的方式工作，它们不包含与内置 AS3
+事件相同的参数和属性。 同样，您将无法使用 instanceof、is、as 和 typeof 来确定哪些类型的事件已被传递。 </p>
+                        </div>
+
+                        <div class="section_2">
+                            <a name="coins_store"></a>
+                            <h2>1.5 显示商店</h2>
+                            <p>
+使用 MochiCoins.showStore() 显示您的商店，其中有两个或更多物品。
+您可以传递一个可选标签数组以显示您的商店中的物品的子集，它与在您的 Mochi 开发者账户的物品中定义的标签匹配。 该标签数组还可以将特定的
+itemId 指定为已经隐含itemid标签的每个物品。 下面的示例显示所有标签为“武器”并具有特定的 itemId 的物品。
+在商店应填充Stage的时候没有传递 x，y 坐标。 </p>
+                            <p class="codetext">MochiCoins.showStore({ tags: ["weapons", "c27d0672bf98ec05"] });</p>
+                        </div>
+
+                        <div class="section_2">
+                            <a name="coins_item"></a>
+                            <h2>1.6 显示单品</h2>
+                            <p>
+使用 MochiCoins.showItem() 显示提供单品的模态对话框。 在您的 Mochi 开发者账户中通过项目标识符列出您的物品。
+默认该对话框将放在Stage的中心，您也可以传递 X，Y 的坐标。 </p>
+                            <p class="codetext">MochiCoins.showItem({item: "xxx"}); // 您也可以传递 X，Y 的坐标 - MochiCoins.showItem({x:330, y:360, item: "xxx"})</p>
+                        </div>
+
+                                            <div class="section_2">
+                                                <a name="coins_video"></a>
+                                                <h2>1.7 显示物品演示视频</h2>
+                                                <p>
+使用 MochiCoins.showVideo() 显示模态对话框，其显示与物品相关的演示视频。 该调用在物品 ID
+无效时或没有与特定物品相关的视频时将被忽略。 </p>
+                                                <p class="codetext">MochiCoins.showVideo({item: "xxx"});</p>
+                                            </div>
+
+                                            
+                        <div class="section_2">
+                            <a name="coins_api"></a>
+                            <h2>1.8 API</h2>
+
+                            <div class="method">
+                                <h3>showStore</h3>
+                                <div class="function">
+                                    <div class="signature">
+                                        showStore(options:Object):void
+                                    </div>
+
+                                    <div class="description">
+                                        <h4>描述：</h4>
+                                        <p>
+                                            显示游戏商店。
+                                        </p>
+                                    </div>
+
+                                    <div class="parameters">
+                                        <h4>参数：</h4>
+                                        <dl>
+                                            <dt><strong>tags</strong>:Array（可选）</dt>
+                                            <dd>数组，用于过滤的字符串的组名</dd>
+                                        </dl>
+                                    </div>
+
+                                     <div class="example">
+                                        <h4>示例：</h4>
+
+    <blockquote class="code"><pre>    MochiCoins.showStore({ tags: ["weapons"] });
+    </pre></blockquote>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="method">
+                                <h3>showItem</h3>
+                                <div class="function">
+                                    <div class="signature">
+                                        showItem(options:Object):void
+                                    </div>
+
+                                    <div class="description">
+                                        <h4>描述：</h4>
+                                        <p>
+                                            显示可以购买的单品。 如果没有传递自定义坐标，默认情况下用户接口将放在Stage的中心。
+                                        </p>
+                                    </div>
+
+                                    <div class="parameters">
+                                        <h4>参数：</h4>
+                                        <dl>
+                                            <dt><strong>x</strong>:Number</dt>
+                                            <dd>x 坐标</dd>
+                                        </dl>
+                                        <dl>
+                                            <dt><strong>y</strong>:Number</dt>
+                                            <dd>y 坐标</dd>
+                                        </dl>
+                                        <dl>
+                                             <dt><strong>item</strong>:String</dt>
+                                             <dd>物品 id</dd>
+                                        </dl>
+                                        <dl>
+                                             <dt><strong>bought</strong>:Boolean（可选）</dt>
+                                             <dd>在您希望显示的单个物品对话框设置为 true，并强制用户界面显示物品为已被用户购买状态。  如果该单品在您的游戏中与其它物品捆绑出售，并希望阻止玩家通过购买此单品而买到捆绑物品，此时该项功能非常有用。</dd>
+                                        </dl>
+                                    </div>
+
+                                    <div class="example">
+                                        <h4>示例：</h4>
+
+    <blockquote class="code"><pre>    MochiCoins.showItem({ x:150, y: 150, item: "xxx" });
+    </pre></blockquote>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                            <div class="method">
+                                <h3>showVideo</h3>
+                                <div class="function">
+                                    <div class="signature">
+                                        showVideo(options:Object):void
+                                    </div>
+
+                                    <div class="description">
+                                        <h4>描述：</h4>
+                                        <p>
+                                            显示与特定物品 ID 相关的演示视频。
+                                        </p>
+                                    </div>
+
+                                    <div class="parameters">
+                                        <h4>参数：</h4>
+                                        <dl>
+                                             <dt><strong>item</strong>:String</dt>
+                                             <dd>物品 id</dd>
+                                        </dl>
+                                    </div>
+
+                                    <div class="example">
+                                        <h4>示例：</h4>
+
+    <blockquote class="code"><pre>    MochiCoins.showVideo({ item: "xxx" });
+    </pre></blockquote>
+                                    </div>
+
+                                </div>
+                            </div>
+                                                    
+                            <div class="method">
+                                <h3>getStoreItems</h3>
+                                <div class="function">
+                                    <div class="signature">
+                                        getStoreItems():void
+                                    </div>
+
+                                    <div class="description">
+                                        <h4>描述：</h4>
+                                        <p>
+                                            从商店获取物品元数据。  这将激活 MochiCoins.STORE_ITEMS 事件。
+                                        </p>
+                                    </div>
+
+                                    <div class="parameters">
+                                        <h4>事件：</h4>
+                                        <dl>
+                                            <dt><strong>MochiCoins.STORE_ITEMS</strong></dt>
+                                            <dd>事件元数据。  请参阅<a href="#coins_events">1.9 事件定义</a></dd>
+                                        </dl>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section_2">
+                            <a name="coins_events"></a>
+                            <h2>1.9 事件定义</h2>
+                            <p>事件以及您的事件处理器将接收的参数如下</p>
+
+                            <dl>
+                                <dt><strong>MochiCoins.STORE_SHOW</strong></dt>
+                                <dd>商店（一种或多种物品）显示。</dd>
+                            </dl>
+
+                            <dl>
+                                <dt><strong>MochiCoins.STORE_HIDE</strong></dt>
+                                <dd>隐藏的商店。</dd>
+                            </dl>
+
+                            <dl>
+                                <dt><strong>MochiCoins.ITEM_OWNED</strong> {id: item id, count: number owned, tags: [ "powerup", "enhancement" ], properties: { power: 20 }}</dt>
+                                <dd>玩家拥有的物品。标签及属性键的值，在您的开发者账户中已经对您的物品商店进行设置。</dd>
+                            </dl>
+
+                            <dl>
+                                <dt><strong>MochiCoins.ITEM_NEW</strong> {id: item id, count: number bought, tags: [ "powerup", "enhancement" ], properties: { power: 20 }}</dt>
+                                <dd>玩家购买的物品。标签及属性键的值，在您的开发者账户中已经对您的物品商店进行设置。</dd>
+                            </dl>
+
+                            <dl>
+                                <dt><strong>MochiCoins.STORE_ITEMS</strong>
+[ { id: "ab473e7f87129ecb", name: "Super Cannon", desc: "A Super
+Cannon", imgURL: "http://..", cost: 150, maxNum: 1, tags: [ level-1,
+powerup] ], properties: { power: 20 } } ]</dt>
+                                <dd>调用 MochiCoins.getStoreItems() 将触发该事件，传递物品元对象的数组。</dd>
+                            </dl>
+
+                            <dl>
+                                <dt><strong>MochiCoins.ERROR</strong> { type: MochiCoins.IO_ERROR }</dt>
+                                <dd>发生错误。  类型值如下：
+                                    <ul>
+                                        <li>MochiCoins.IO_ERROR: 出现网络错误。</li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+
+                        <div class="section_2">
+                            <a name="coins_mochiinventory"></a>
+
+                            <h2>1.10 消耗品和游戏中货币支持（仅限 AS3 购买和消耗品跟踪）</h2>
+                            <p>
+                                MochiInventory 用于跟踪购买的物品、消耗品和游戏特定的货币。
+                            </p>
+
+                            <p>
+使用尽量小的代码创建自动化且透明的API。它通过一个位于 MochiCoins.inventory
+命名空间内的数字的同步列表实现。可以像其他的 AS3 一样来存储、删除或更新该对象内的任何值。 </p>
+
+                            <div class="example">
+                                <h4>示例：</h4>
+    <blockquote class="code"><pre>    // 创建和设置一个参数的值
+    MochiCoins.inventory.grenades = 5;
+    // 增加3个手榴弹
+    MochiCoins.inventory.grenades += 3;
+    // 在对象中删除名为手榴弹的键
+    delete MochiCoins.inventory.grenades;
+
+    // 通过字符串的键来访问
+    MochiCoins.inventory["grenades"] = 5;
+    </pre></blockquote>
+                            </div>
+
+                            <p>
+                                修改这些值将会启动一个与服务器同步的进程，在一个短的合并周期后就会自动提交任何更改的数据。
+                            </p>
+
+                            <p>
+                                MochiInventory 必须先从我们的服务器下载对象的初始状态，以下这些属性才可以进行修改。为了配合开发者，我们已经制作了三个应该与您的应用程序联合使用的事件的列表。  
+                            </p>
+
+                            <dl>
+                            <dt><strong>MochiInventory.READY</strong></dt>
+                            <dd>在 MochiInventory 收到其初始的同步并可以进行修改时调度。</dd>
+                            </dl>
+
+                            <dl>
+                            <dt><strong>MochiInventory.WRITTEN</strong></dt>
+                            <dd>当 MochiInventory 被成功写入服务器时发生。不是每个修改都会发生该操作，如为了减少服务器的负载写会被延迟。它可以用来通知您最近发生了同步。</dd>
+                            </dl>
+
+                            <dl>
+                                <dt><strong>MochiInventory.ERROR</strong> { type: xxx, error: xxx }</dt>
+                                <dd>当 MochiInventory API 发生错误时发生。类型可以是三个不同的值：
+
+                                <dl>
+                                    <dt><strong>MochiInventory.IO_ERROR</strong> </dt>
+                                    <dd>出现了网络故障，中断了与服务器的同步</dd>
+                                </dl>
+
+                                <dl>
+                                    <dt><strong>MochiInventory.NOT_READY</strong></dt>
+                                    <dd>在初始数据同步前尝试修改库存对象</dd>
+                                </dl>
+                                <dl>
+                                    <dt><strong>MochiInventory.VALUE_ERROR</strong></dt>
+                                    <dd>尝试存储除对象中的数字外的任何值</dd>
+                                </dl>
+                            </dd></dl>
+
+                            <p>
+                                所有这三种基本事件可用于处理 MochiInventory 系统的基本状态。
+                            </p>
+
+                            <div class="example">
+                                <h4>示例：</h4>
+    <blockquote class="code"><pre>                            
+    function inventoryReady( event:Object ):void
+    {
+        // 库存已经可以修改
+        MochiCoins.inventory.grenades = 5;    
+    }
+
+    function syncOccurred( event:Object ):void
+    {
+        trace("inventory written to server");
+    }
+
+    function handleError( error:Object ):void
+    {
+        switch( error.type )
+        {
+        case MochiInventory.IO_ERROR:
+            trace("Network error:", error.error);
+            break ;
+        case MochiInventory.VALUE_ERROR:
+            trace("Attempted to write non-Number value:", error.error);
+            break ;
+        case MochiInventory.NOT_READY:
+            trace("Inventory not ready for modification:", error.error);
+            break ;
+        }
+    }
+
+    MochiInventory.addEventListener(MochiInventory.READY, inventoryReady);
+    MochiInventory.addEventListener(MochiInventory.WRITTEN, syncOccurred);
+    MochiInventory.addEventListener(MochiInventory.ERROR, handleError);
+    </pre></blockquote>
+                        </div>
+                            
+
+                            <p>
+最后是内置到 MochiInventory 的购买跟踪。MochiInventory 自动跟踪购买，并将用各种 Mochi
+币所购物品的运行时间属性设置来工作，以帮助您创建诸如游戏特定的货币和消耗物品。当 MochiInventory API
+接收到购买事件时，会发生： </p>
+
+                            <p>
+将自动创建所购物品的 itemID 键(如果还没该键)，增加该键的值。 例如，一个用户购买 5 个物品
+"0000000000000000"，MochiCoins.inventory['0000000000000000'] 将增加
+5。您可以按照自己的意愿增加或减少该值，也可以在用户进行其它购买时，自动修改该值。 </p>
+
+                            <p>
+                                如果物品被标记为消耗品，会通过每次购买的固定金额增加消耗品键。 该功能可用于出售捆绑物品，例如，游戏特定的货币 1000 元或 5 个手榴弹。
+                            </p>
+
+                            <p>
+                                您必须在商店的物品设置“物品类型”部分中将物品设置为“消耗品” ，才能设置该消耗品的值。
+                            </p>
+
+                           <img onclick="this.src = this.src;" src="dev_docs_files/item_type.png" height="234" width="541">
+
+                            <p>
+                                最后，您需要设置键，及您想要增加该键的数量。例如，您希望每次购买 MochiInventory.inventory.grenades 时增加 5 个，可以参见以下示例。
+                            </p>
+
+                            <img onclick="this.src = this.src;" src="dev_docs_files/consume_settings.png" height="332" width="542">
+                            <p>
+                                一旦对您的商店进行同步，就有 5 个消耗品手榴弹的包可进行购买。<br><br> 请注意该值仅由客户端API进行跟踪，不会反映在用户界面的任何地方，并且要由开发者来显示各种属性的值。
+                            </p>
+                                
+                            <p>
+                                <strong>注意：</strong> 如果 MochiInventory 遗失了一个购买记录（由于通信故障或其他错误），MochiInventory 将在下一个游戏 session 中同步已经遗失的购买。
+                            </p>
+                        </div>
+
+                        </div>
+
+                        <div class="section_2">
+                            <a name="coins_sandbox"></a>
+                            <h2>2.0 Sandbox 模式</h2>
+                            <p>
+                            Sandbox 模式允许您查看和购买您的商店内的物品，不需要向所有玩家发布更改。在发布更改之前，您的商店及物品的所有更改仅在 Sandbox 模式中对 Sandbox 用户可见。
+                            </p>
+                            <p>在 Sandbox 模式中测试您的商店、物品和购买：</p>
+                            <ol>
+                                <li> 在您的游戏<i>币</i>选项卡中创建或修改您的商店。在通过<i>发布更改</i>按钮发布更改之前，您的更改只对 Sandbox 用户可用。</li>
+                                <li> 在 <i>Sandbox 设置</i>菜单中，在右边输入 Mochi 开发者账户的列表以允许 sandbox 访问。</li>
+                                <li> 通过在您的 Mochi 开发者用户名前加一个 ‘@’，以 Sandbox 用户登录到“钱币登录窗”。密码与您的 Mochi 开发者密码相同。</li>
+                                <li> 在 Sandbox 模式中，您有大量钱币 (1,000,000) 可以进行测试。</li>
+                                <li> 在<i>Sandbox 设置</i>菜单中，使用<i>清除 Sandbox 库存</i>按钮清除 Sandbox 用户购买的所有物品。</li>
+
+                            </ol>
+                        </div>
+                        <div class="section_2">
+                            <a name="coins_server"></a>
+                            <h2>3.0 服务器验证</h2>
+                            <p>
+                            Mochi 钱币 API 有一个易用的服务器到服务器的 API，它允许您验证您的游戏用户的身份和库存。这意味着您不必信任客户端，这样可以防止欺骗。
+                            </p>
+                            <p>
+在客户端的 MochiSocial.LOGGED_IN 事件中有一个 "api_token" 属性。API
+令牌允许您代表该玩家进行只读服务器调用。您将得到 JSON 响应，它概述了用户身份以及在您的游戏中他们拥有的物品。 </p>
+                            <p>http://api.mochigames.com/coins/user-info/$$API_TOKEN 的 HTTP 响应示例</p>
+    <blockquote class="code"><pre>{
+    "hasCoins": true, 
+    "inventory": [
+        {
+            "count": 1, 
+            "id": "2ecad5ea55fc7aba", 
+            "properties": {
+                "slug": "barkley"
+            }, 
+            "tags": [
+                "dog",
+                "small"
+            ]
+        }
+    ], 
+    "name": "name", 
+    "uid": 1, 
+    "userProperties": {
+        "hitPoints": 120
+    }
+}
+    </pre></blockquote>
+                    
+                    <p>示范 PHP 代码：</p>
+    <blockquote class="code"><pre>$$handle = fopen("http://api.mochigames.com/coins/user-info/" . $$api_token, "rb");
+$$contents = stream_get_contents($$handle);
+fclose($$handle);
+$$res = json_decode($$contents);
+
+echo "User " . $$res-&gt;{'name'} . "\n";
+foreach($$res-&gt;{'inventory'} as $$item) {
+    echo "  owns " . $$item-&gt;{'count'} . " of item " . $$item-&gt;{'id'} . "\n";
+}
+    </pre></blockquote>
+
+                    </div>
+                    <!--! MOCHIADS -->
+                    <div class="section_1">
+                    <a name="MochiAds"></a>
+                    <h1>广告 API 说明</h1>
+
+                       <p>这是使 Mochi 广告 API 与您的 Flash 游戏联合使用的简单步骤指导。点击下面的链接转到该说明的任意部分。前面两部分描述的是运行您的广告所需要的前提条件。</p>
+
+                    <div class="section_2">
+                        <h2><a name="Prerequisites:"></a>1.1 前提条件：</h2>
+
+                        <p>
+                            MochiAPI与 Flash Player 7 之前的版本不兼容，并且不再兼容 ActionScript 1.0。
+                        </p>
+
+                        <p>开始前，请确保您已经进行以下操作：</p>
+
+                        <ol>
+                            <li> 在 www.mochimedia.com 上注册一个 Mochi 开发者账户</li>
+                            <li> 登录并添加新游戏到您的账户。</li>
+                            <li> 下载包含 MochiAPI 的ZIP包。</li>
+                            <li> 选择您的代码选项并复制 Mochi广告API 游戏中的代码。</li>
+                        </ol>
+
+                        <div class="download">
+                                <a href="https://www.mochimedia.com/dl/MochiAPI_v3_8.zip">Mochi API v3.8</a>
+                        </div>
+                    </div>
+
+                    <div class="section_2">
+                        <h2> <a name="The_MochiAds_Codes:"></a>1.2 Mochi API 广告代码：</h2>
+
+                        <div class="figure" style="width: 240px;">
+                            <img src="dev_docs_files/mochiads_zip_folders.jpg" height="199" width="212">
+                             <p><strong>图解 a：</strong> MochiAPI ZIP包文件夹结构。</p>
+                             <div class="spacer"></div>
+                        </div>
+
+                        <p>为了 Mochi广告API 在您的游戏中正常运行，需要做两件事情 -- mochi <em>include 文件夹</em>和<em>游戏中代码</em>。</p>
+
+                        <p><em>include 文件夹</em>包含您的游戏将会引用以显示您的广告的 ActionScript 代码。您永远不需要编辑该代码。您只需要确保它的位置正确，这样当您发布或编译您的游戏时就可以导入或内置它。无论在您的游戏中显示多少广告，只需要对每个游戏这样操作一次。</p>
+
+                        <p><em>游戏中代码</em>是
+您粘贴到您的游戏中，以便在游戏中的特定时间点显示广告的代码。它可能被放置在您电影的主要时间轴上的特定的帧中，或在您的游戏代码中调用特定事件时进行
+调用。根据您如何创建游戏，放置这段代码的位置将有所不同。请记住，在您对 Mochi广告API 进行调用时就会显示广告。</p>
+
+                        <h3><a name="Include_File_Installation:"></a>Include 文件夹安装：</h3>
+
+                        <div class="figure" style="width: 320px;">
+                            <!--! This unintuitive onclick has the effect of restarting the animated GIF --> <img onclick="this.src = this.src;" src="dev_docs_files/copy_include.gif" height="230" width="300">
+                            <p><strong>图解 b：</strong> 将 mochi 文件夹复制到您的 .fla 的目录。<br>（点击图片重启动画）</p>
+                            <div class="spacer"></div>
+                        </div>
+
+                        <p>Mochi API ZIP 包包含您的游戏必需的 include 代码。将该包解压缩到您的硬盘上，里面包含一些文件夹<cite>（图解 a）</cite>。</p>
+
+                        <p>请务必阅读 README.TXT 文件，以了解 Mochi API 文件 include  的最新版的信息。</p>
+
+                        <p>该包中的每个文件夹都对应一个特殊的编码环境。 请选择最适合您的一种：</p>
+
+                        <ul>
+                            <li><strong>docs</strong>: MochiAPI 使用说明。</li>
+                            <li><strong>examples</strong>: 使用 MochiAPI的示例。</li>
+                            <li><strong>mochi</strong>: MochiAPI include 文件夹。</li>
+                        </ul>
+
+                        <p>只需复制 <code>mochi</code> 文件夹并将其粘贴到您将发布游戏的目录。您无需为 include <cite>（图解 b）</cite>创建一个专用的文件夹。</p>
+
+                        <p>这些说明也适用于示例。只需将 <code>mochi</code> 文件夹复制到您希望使用的示例项目，并发布进行测试。</p>
+
+                        <h3><a name="Adding_the_In-game_Code:"></a>添加游戏中代码： </h3>
+
+                        <p><em>游戏中代码</em>是您从 Mochi 开发者网站复制的一行代码。该代码是告诉 <code>MochiAPI</code>启动您的广告的方法调用。您将这段代码粘贴到您的游戏中，放在您想要显示广告的地方。您的代码类似于：</p>
+
+                        <p class="codetext">mochi.as2.MochiAd.showPreGameAd({id:"xxxxxxxxxxxxxxxx", res:"360x240"});</p>
+
+                        <p><span style="color: rgb(204, 0, 0);">注意：</span> 在API 3.0 修订版中，我们更改了库的命名空间以统一和组织我们的包。现在您必须明确调用对应您的 ActionScript 版本的API： 分别是 <code>mochi.as2.*</code>  或 <code>mochi.as3.*</code>。为了更好地说明这个文档，我们将列出 ActionScript 2.0 MochiAPI的示例。只需从代码样本中删除 <code>mochi.as2.</code>，并将 <code>import mochi.as3.*;</code> 添加到您的代码块开头部分以使用 ActionScript 3.0 MochiAPI。</p>
+
+                        <p>在您的游戏中可以内置三种类型的广告 -- <em>游戏前广告</em>、<em>游戏关卡广告</em>和<em>点击播放广告</em>。
+游戏前广告包含一个进度条，实时显示您的游戏从web站点加载到玩家电脑的进度。游戏关卡广告是在游戏过程中的某些点出现的广告。在最方便的和最不引人注
+目的关卡之间显示广告，因而得名游戏关卡广告。点击播放广告是 300x250 的广告，可放在你指定的任何地方，它只会在用户操作时才消失。</p>
+
+                        <p>您可以使用 Mochi 开发者网站来自定义您的代码，以便获得特定广告类型和您需要的 ActionScript 版本。</p>
+
+                        <p><span style="color: rgb(204, 0, 0);">ACTIONSCRIPT 3 注意事项：</span> ActionScript 3 开发者也要注意一个名为<em>clip</em>的附加参数，它向 DisplayObject 容器传递一个引用，以显示您的广告。这是必需参数，游戏前广告和游戏关卡广告默认情况下的设置为root。有关自定义该参数的更多信息请参阅以下内容。</p>
+
+                        <h3><a name="Pregame_Code:"></a>游戏前广告：</h3>
+                        <div class="figure">
+                            <!--! This unintuitive onclick has the effect of restarting the animated GIF --> <img onclick="this.src = this.src;" src="dev_docs_files/paste_pregame_code.gif" height="320" width="480">
+                            <p><strong>图解 c：</strong> 将游戏前代码粘贴到游戏的 FLA 。<br>（点击图片重启动画）</p>
+                            <div class="spacer"></div>
+                        </div>
+
+                        <p>使用预载器将<em>游戏前广告</em>添加到您的游戏中，只要从 Mochi 开发者网站获取适当的代码，并将其粘贴到您视频的主要时间轴中，放在您指定的放置预载器<cite>（图解 c）</cite>的地方。</p>
+
+                        <p>如
+果您的游戏准备就绪，您可以测试您的视频，在加载视频时应该可以看到游戏前广告。开发游戏过程中，可以不限次数地测试您的广告。请记住：在填写完您的游戏
+简介（包含一个指向已完成游戏的URL）前，您的广告不能赚钱。您还可以从游戏设置页面上载您的 SWF 文件，以便免费托管。</p>
+
+                        <h3><a name="Interlevel_Code:"></a>游戏关卡广告</h3>
+                        <div class="figure">
+                            <!--! This unintuitive onclick has the effect of restarting the animated GIF --> <img onclick="this.src = this.src;" src="dev_docs_files/paste_interlevel_code.gif" height="320" width="480">
+                            <p><strong>图解 d：</strong> 将游戏关卡代码粘贴到游戏 FLA。<br>（点击图片重启动画）</p>
+                            <div class="spacer"></div>
+                        </div>
+
+                        <p>要将<em>游戏关卡广告</em>添加到您的游戏中，只要从 Mochi 开发者网站获取适当的代码，并将其粘贴到您视频的主要时间轴中，放在您指定放置游戏关卡屏幕<cite>（图解 d）</cite>的地方。</p>
+
+                        <p>就像游戏前广告一样，您可以测试您的游戏并在操作过程中观看游戏关卡广告。</p>
+
+
+                        <h3><a name="Clickaway_Code:"></a>点击播放广告</h3>
+
+                        <p>要在您的游戏中添加<em>点击播放广告</em>，只要从 Mochi 开发网站获取适当的代码放进 DisplayObject 容器 / MovieClip 中，在<em>clip</em>参数中将包含点击播放广告。300x250 点击播放广告的左上角，将被放置在您指定的 DisplayObject 容器 / MovieClip 的左上角。当您希望停止显示点击播放广告时，根据您个人的 ActionScript 版本发布设置将您的 <em>clip</em> 传递到 <code>MochiAd.unload()</code>。</p>
+
+                        <h3> Flash Player 安全设置： </h3>
+                        <p>如
+果您正在 Flash 编码环境外部进行本地测试，并且想要看到广告，您将需要更改默认本地回放安全设置。在 Flash 中，进入“文件 -&gt;
+发布设置”，然后单击“Flash”选项卡。在底部，“本地回放安全”下方，选择“只访问网络”，然后再次发布。如果您正在加载任何本地数据，请记住在将
+您的设置改回“只访问本地文件”之前不可再访问本地数据。这些设置不会影响网上回放。</p>
+
+                        <p>您可能希望将开发文件目录添加到 <a href="http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04a.html" title="Adobe Flash Player 设置管理器">Adobe Flash Player 设置管理器</a>中的全局安全设置。 用这种方法您可以将所有 SWF 文件放在本地信任访问的目录，以允许访问本地和远程数据。</p>
+
+                        <p>如果您在 Flash 编码环境中只是测试游戏，那么不需要进行此操作，也不用理睬“弹出”的“Sandbox 冲突”警告窗口。与 MochiAPI 有关的警告可以忽略。</p>
+
+                        <h3>其他游戏中代码位置</h3>
+                        <p>由
+于制作 Flash 游戏有很多不同的方法，很可能您的游戏开发设置与上面提到的设置有所不同。您可能嵌套了 MovieClip
+，或者你根本就没有使用时间轴。您也可能将游戏中代码放置在一个 MovieClip 时间轴内，这样它会在播放到您放置代码的帧时被执行。</p>
+
+                        <h3>并且您完成了！</h3>
+                        <p>以上就是在您的游戏中运行 Mochi API 广告需要做的所有事情。在您已经完成您的游戏并将其发布到全世界时，请确保填写了您的个人资料，以便您的游戏可以通过审批并开始赚钱。</p>
+                    </div>
+
+                    <div class="section_2">
+                        <h2><a name="Customizing_Your_Ad"></a>1.3 自定义您的广告</h2>
+
+                        <p>可以自定义您的 Mochi 广告的很多视觉元素和行为。Mochi广告API 游戏中代码允许根据您的需要来调整显示。您可以调整的参数如下：</p>
+
+                        <ul>
+                            <li><strong>MovieClip 容器：</strong> 您可以将您的广告内置到stage上的任何 MovieClip 中，或您使用 Actionscript 创建的 MovieClip 中。</li>
+                            <li><strong>时间：</strong> 您可以自定义广告的播放时间。</li>
+                            <li><strong>颜色：</strong> 更改广告预载进度条的颜色、背景及轮廓。您还可以关闭固定背景。</li>
+                            <li><strong>事件处理器：</strong> 您可以指定在广告开始、加载和结束时调用自定义函数。</li>
+                        </ul>
+
+                        <h3> Mochi 广告 API</h3>
+                        <p>您的广告可以通过游戏中代码发送特殊参数进行自定义。根据您选择显示的是游戏前广告还是游戏关卡广告，您的选项将会稍有不同。</p>
+
+                        <p>游戏中代码传递一个具有键和值的对象到服务器。默认代码包含两个键 id：唯一Mochi游戏ID 和 res（您的游戏的高度 x 宽度）。这些参数是必需的。</p>
+
+                        <p class="codetext">mochi.as2.MochiAd.showPreGameAd({id:"xxxxxxxxxxxxxxxx", res:"360x240"});</p>
+
+                        <p>您可以为对象添加更多通过逗号分隔的键值对。您可以为对象添加以下可选参数：</p>
+
+                        <ul>
+                            <li><strong>clip</strong><span class="vartype">:MovieClip</span> - 放置广告的 MovieClip 引用。对于点击播放广告或您使用的是 Actionscript 3.0 ，此项必需。 否则，默认 _root。 <span class="default">（默认： _root)</span></li>
+                            <li><strong>no_bg</strong><span class="vartype">:Boolean</span> - 设置为<em>true</em>，将完全禁用背景。 <span class="default">（默认： false）</span></li>
+                        </ul>
+
+                        <p>以下其他选项只适用于游戏前广告：</p>
+
+                        <ul>
+                            <li><strong>color</strong><span class="vartype">:Number</span> - 预载进度条的颜色，为数字。 <span class="default">（默认： 0xFF8A00）</span></li>
+                            <li><strong>background</strong><span class="vartype">:Number</span> - 预载进度条的内部颜色，为数字。 <span class="default">（默认： 0xFFFFC9）</span></li>
+                            <li><strong>outline</strong><span class="vartype">:Number</span> - 预载进度条的边框颜色，为数字。 <span class="default">（默认： 0xD58B3C）</span></li>
+                            <li><strong>no_progress_bar</strong><span class="vartype">:Boolean</span> - 设置为 <em>true</em>，将禁用预载进度条。 <span class="default">（默认： false）</span></li>
+                        </ul>
+
+                        <p>在加载广告时你可以看到广告的宽度和高度。您可以使用该信息在与您的游戏相匹配的广告周围创建自定义框架。</p>
+
+                         <ul>
+                            <li><strong>ad_loaded</strong><span class="vartype">:Function</span> - ad_loaded 是刚好在显示广告及其宽度和高度之前调用的函数。 <span class="default">（默认： function(width:Number, height:Number):Void { }）</span></li>
+                        </ul>
+
+                        <p>您还可以看到预载进度条的进度。 当使用 no_progress_bar 选项时，您可以使用该信息创建您自己的预载进度条。</p>
+
+                         <ul>
+                            <li><strong>ad_progress</strong><span class="vartype">:Function</span> - ad_progress 是与预载进度条的进度一起调用的函数。该进度是一个百分数（用 0 到 100 表示）。 <span class="default">（默认： function(percent:Number):Void { }）。</span></li>
+                        </ul>
+
+
+                        <p>如果你要添加更多的选项，参见以下示例：</p>
+
+                        <p class="codetext">mochi.as2.MochiAd.showPreGameAd({id:"xxxxxxxxxxxxxxxx",
+res:"360x240", clip: _root.myClip, no_bg: true, color: 0x006699,
+outline: 0xFFFFFF});</p>
+
+                        <p>如果您需要添加许多选项，或定义处理广告事件的函数，您可以首先考虑创建一个对象，然后在您调用 Mochi广告API 时引用该对象。</p>
+
+<blockquote class="code"><pre>var myOptions:Object = {
+    id: "xxxxxxxxxxxxxxxx",
+    res: "360x240",
+    clip: _root.myClip,
+    color: 0x006699,
+    background: 0x333333,
+    outline: 0xFFFFFF,
+    ad_loaded: function (width, height) { trace("ad loaded: " + width + "x" + height); }
+    ad_progress: function (percent) { trace("preloader percent: " + percent); }
+}
+mochi.as2.MochiAd.showPreGameAd({myOptions});</pre></blockquote>
+
+                        <p>在 Mochi 开发者网站上还提供一种工具，可以在您设置游戏中代码时自定义广告的外观。通常，这比手工编辑代码容易。</p>
+                    </div>
+
+                    <div class="section_2">
+                        <h2><a name="Changing_Ad_Behaviors"></a>1.4 更改广告行为</h2>
+
+                        <p>以上描述的 Mochi广告API 还允许您指定自己的被您的广告调用的事件处理器。 包括六种事件：</p>
+
+                        <ul>
+                            <li><strong>ad_started</strong><span class="vartype">:Function</span> - 在广告已经开始播放时调用的函数。 <span class="default">（默认： function ():Void { this.clip.stop() }）</span></li>
+                            <li><strong>ad_loaded</strong><span class="vartype">:Function</span> - 在显示广告及其宽度和高度之前调用的函数。 如果调用，会在 ad_started 后进行调用。<span class="default">（默认： function(width:Number, height:Number):Void { }）</span></li>
+                            <li><strong>ad_finished</strong><span class="vartype">:Function</span> - 在广告结束播放时调用的函数。 <span class="default">（默认： function ():Void { this.clip.play() }）</span></li>
+                            <li><strong>ad_failed</strong><span class="vartype">:Function</span> - 广告无法显示的情况下调用的函数，通常是由于用户安装了拦截软件或通过网络获取该广告时出现了问题。 如果调用，会在 ad_finished 前进行调用。 <span class="default">（默认： function ():Void { }）</span></li>
+                            <li><strong>ad_skipped</strong><span class="vartype">:Function</span> - 广告被跳过的情况下调用的函数，通常是由于显示频率超过最大值或开发者启用了域名过滤。如果调用，会在 ad_finished 前进行调用。 <span class="default">（默认： function ():Void { }）</span></li>
+                            <li><strong>ad_progress</strong><span class="vartype">:Function</span> - 当预载进度条的进度发生了变化时调用的函数。该进度是一个百分数（用 0 到 100 表示）。 <span class="default">（默认： function(percent:Number):Void { }）。</span></li>
+                        </ul>
+
+                        <p>当在您的选项对象中给 ad_started 和 ad_finished 指定了自定义函数时，您的广告将不再停止和播放时间轴，而是调用您的自定义函数。</p>
+
+<blockquote class="code"><pre>var myOptions:Object = {
+    id: "xxxxxxxxxxxxxxxx",
+    res: "360x240",
+    clip: _root.myClip,
+    ad_started: function ():Void { _global.game.pause(); },
+    ad_finished: function ():Void { _global.game.resume(); }
+}
+mochi.as2.MochiAd.showPreGameAd({myOptions});</pre></blockquote>
+
+                        <p>最好是在您的选项对象中明确地传递一个函数文本，而不是在一个单独的类中引用函数。这样，您不必担心越过作用域或依赖 Delegate（委托）类。 如果您使用的是 ActionScript 3，您也可以将引用传递到您的函数，而不越过作用域。</p>
+
+                        <p>请记住，如果您定义了自定义的 ad_started 或 ad_finished 事件处理器，您的时间轴在广告回放期间将不再停止。 所以，如果您希望停止时间轴，将需要确保您的事件处理器做了这些操作。</p>
+                    </div>
+
+                    <div class="section_2">
+                        <h2><a name="MTASC_and_MXMLC"></a>1.5 MTASC 和 MXMLC</h2>
+
+                        <p>对于那些不使用 Flash IDE 开发环境的开发者，添加 Mochi广告API 的过程将稍有不同。为了在您的游戏中运行您的广告，您将需要：</p>
+
+                        <ol>
+                            <li> 确保 <code>mochi</code> 文件夹放在了您的根项目的类库目录中。</li>
+                            <li> 您已经在游戏中实例化类里以被执行的方法添加了游戏中代码。 </li>
+                        </ol>
+                    </div>
+
+                    <div class="section_2">
+                        <h2><a name="Flex"></a>1.6 Adobe Flex</h2>
+
+                        <p>要将 Mochi广告API 作为 Adobe Flex 应用程序的预载器使用，您需要：</p>
+
+                        <ol>
+                            <li> 确保您使用的是 MochiAPI ZIP 包中的 <i>examples/flex</i> 文件夹里的 <code>MochiPreloader.as</code>。</li>
+                            <li> 确保 <code>mochi</code> 文件夹和 <code>MochiPreloader.as</code> 放在了您的项目类库目录中。</li>
+                            <li> 告诉您的 MXML 应用程序您想要使用的预载器是：
+                                 <blockquote class="code"><pre>&lt;mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" preloader="MochiPreloader"&gt;
+&lt;/mx:Application&gt;</pre></blockquote>
+                             </li>
+                            <li> 注意： 对于游戏关卡广告，当广告结束时 MochiAPI 无法通过 <code>MovieClip.stop()</code> 和 <code>MovieClip.start()</code> 方法告诉您的游戏。 您必须在您的游戏选项对象（在<a href="#Changing_Ad_Behaviors"> 1.4 章节</a> 中描述）中使用 <code>ad_started</code> 和 <code>ad_finished</code> 回调方法，以便通知开始和停止您的游戏的时间。</li>
+                        </ol>
+                    </div>
+
+                    <div class="section_2">
+                        <h2><a name="AS3_Preloader"></a>1.7 ActionScript 3.0 预载</h2>
+
+                                            <p><em>mxmlc</em>
+文件夹包括一个预载器类（Preloader.as），它提供了一个关于如何正确地将预载器编译进一个用 Adobe Flex mxmlc
+编译器编译的 AS3 SWF 中的示例。为了使预载器工作正常，它必须首先加载并在您的基类和其他 SWF
+资源加载前执行。为了能够首先加载，在您的 SWF
+第一帧上包含预载类，并且在下一帧上包含所有其他资源。该预载器类包含一个对您的文档类的弱引用，游戏加载完成后使用它来实例化您的类。</p>
+
+<blockquote class="code"><pre>// 把这个类名改成你的主类
+public static var MAIN_CLASS:String = "Test";
+</pre></blockquote>
+
+                                            <p>对于 Flex Builder，示例中包含的 makefile 通知 mxmlc 编译器：在 SWF 的第二帧中内置您的“文档类”，这样预载器将首先进行加载：</p>
+
+<blockquote class="code"><pre>mxmlc \
+               -default-frame-rate 31 \
+               -default-size 550 400 \
+               -use-network \
+               -optimize=true \
+               -output $@ \
+               -frame=Test,Test \
+               Preloader.as
+</pre></blockquote>
+
+                                            <p><em>注意编译器选项 '-frame=Test,Test'。</em></p>
+
+                                            <p>如果您使用的是 FlashDevelop，那么您需要确保使用编译选项 "-frame Test, Test"　，这可以在<em>项目属性</em>的<em>编译器选项</em>中设置。不要忘记将 'Test' 更改为您的基类的真实名称。</p>
+
+                    </div>
+
+
+                    <div class="section_2">
+                        <h2><a name="FlashDevelop"></a>1.8 Flash 开发</h2>
+
+                        <p>我们的示例采用 <code>AS3 空项目模板</code>作为它的基础。在这个框架中使用我们的API比使用标准 Flash IDE 项目简单，只要将 <code>mochi</code> 文件夹复制到您的项目文件夹下的 <code>src</code> 文件夹中，然后就可以调用该标准API了</p>
+                    </div>
+
+
+                    <div class="section_2">
+                        <h2><a name="More_Resources"></a>1.9 更多的资源</h2>
+
+                        <p>如果您使用 Mochi广告API　有问题，可以查看我们的<a href="http://zh-cn.mochimedia.com/support/dev_faq.html">常见问题</a>或访问<a href="http://zh-cn.mochimedia.com/community/">支持论坛</a>。 此外，如果您对该帮助说明有任何建议，请反馈您的建议。</p>
+                    </div>
+
+                </div><!-- mochiads -->
+
+                     <!--! MOCHISERVICES -->
+                    <div class="section_1">
+                        <a name="MochiServices"></a>
+                        <h1>积分API说明</h1>
+
+                        <div class="section_2">
+                            <a name="serv_ov"></a>
+                            <h2>1.1 概述</h2>
+                            <p>
+MochiServices　包括除 Mochi广告API　以外的所有 Mochi API。 该API是从 Mochi
+服务器动态加载而来，必须在您的游戏第一帧或在“文档类”初始化过程中进行初始化。 </p>
+                        </div>
+
+                        <div class="section_2">
+                            <a name="serv_pre"></a>
+                            <h2>1.2 前提条件</h2>
+                            <p>
+                                MochiAPI与 Flash Player 7 之前的版本不兼容，并且不再兼容 ActionScript 1.0。
+                            </p>
+
+                            <h4>安装 Mochi积分API</h4>
+                            <ol>
+                                <li>下载并解压缩最新的 MochiAPI。 </li>
+                                <li>复制 mochi 文件夹并将其粘贴到您的游戏根级类库目录下。一般情况下这与您的游戏的 FLA 文件目录相同。</li>
+                            </ol>
+
+                            <p><span style="color: rgb(204, 0, 0);">注意：</span> 在API 3.0 修订版中，我们更改了库的命名空间以统一和组织我们的包。现在您必须明确调用特定版本的 MochiAPI： 分别是 <code>mochi.as2.*</code>  或 <code>mochi.as3.*</code>。  为了更好地说明这个文档，我们将显示指定 ActionScript 2.0 API的示例。只需从代码样本中更改 <code>mochi.as2.</code>，并将 <code>import mochi.as3.*;</code> 添加到您的代码块开头部分以使用 ActionScript 3.0 API。</p>
+
+                            <div class="download">
+                                <a href="https://www.mochimedia.com/dl/MochiAPI_v3_8.zip">Mochi API v3.8</a>
+                            </div>
+
+                        </div>
+
+                        <div class="section_2">
+                            <a name="serv_api"></a>
+                            <h2>1.3 连接到 MochiServices </h2>
+
+                            <div class="method">
+                                <h3>connect</h3>
+                                <div class="function">
+                                    <div class="signature">
+                                        connect(id:String, clip:Object, onError:Function):Void
+                                    </div>
+
+                                    <div class="description">
+                                        <h4>描述：</h4>
+                                        <p>
+                                            从 Mochi 服务器中获取并初始化 MochiServices.swf。 任何 API 的调用都只能在 MochiServices.swf 下载并初始化后才能被执行。
+                                        </p>
+                                    </div>
+
+                                    <div class="parameters">
+                                        <h4>参数：</h4>
+                                        <dl>
+                                            <dt><strong>id</strong>:String</dt>
+                                            <dd>Mochi 游戏 ID</dd>
+                                            <dt><strong>clip</strong>:Object</dt>
+                                            <dd>在视频剪辑或子画面中加载 API（除 AS3 外，其他为可选项，默认到 _root）。 在 as3 中，剪辑必须是动态的。</dd>
+                                            <dt><strong>onError</strong>:Function</dt>
+                                            <dd>
+如果 Mochi 服务无法连接到服务器或在任何其他API调用中发生任何 IO 错误，将调用这种方法。onError
+的处理程序将接收描述该错误的状态代码。可能发生的错误： <ul>
+                                                    <li>NotConnected — 服务无法连接或无法加载当前视频剪辑。</li>
+                                                    <li>IOError — 服务器已经连接，但是无法和服务器交互。</li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </div>
+
+
+
+
+                                    <div class="example">
+                                        <h4>AS2 示例：</h4>
+
+<blockquote class="code"><pre>mochi.as2.MochiServices.connect("xxx", root, onConnectError);
+
+public function onConnectError(status:String):Void {
+    <span class="comment">// handle error here...</span>
+}
+</pre></blockquote>
+
+                                        <p>… 在引号中的 ‘xxx’ 代表您的 Mochi 游戏 ID。 测试您的视频，然后应该会在您的输出面板中看到以下内容：</p>
+
+                                        <blockquote class="code trace">
+                                            Mochi 服务连接…<br> 等待 Mochi 服务连接…<br> 已连接！
+                                        </blockquote>
+
+                                        <p>
+如果您看到以上内容，那意味着“mochi”文件夹的目录位置正确，并为 Mochi 服务提供了正确的 Mochi 游戏
+ID。请记住，您需要在游戏开始时调用一次connect，然后才能在您的游戏中连接 Mochi 服务，调用其它的API。 </p>
+
+                                        <h3>AS3 要求 - <em>clip</em>参数</h3>
+                                        <p>
+在 ActionScript 3 中，Stage的root无法进行全局访问。 如果一个子画画或视频剪辑没有权限访问 root
+或已添加到显示列表的另一个容器，那么它不能直观地被显示在Stage上。基于这个原因，在调用 MochiServices.connect
+时，您必须向剪辑参数提供您的Stage的root或对子Stage的子画面或 视频剪辑的引用。 请注意传递的剪辑也必须是动态的。 </p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="section_2">
+                            <a name="MochiScores"></a>
+                            <h1>排行榜</h1>
+
+                            <div class="section_3">
+                                <a name="score_ov"></a>
+                                <h2>2.1 概述</h2>
+                                <p>
+Mochi 积分为开发者提供简单插入式的解决方案，来处理游戏中的积分。开发者可以为他们的游戏创建任意个排行榜，以追踪玩家积分。
+以每天、每周和每月为间隔对积分进行排名和跟踪。您添加到 Mochi 的每个游戏可以有很多排行榜，但是为了使用 Mochi积分API
+您必须至少有一个排行榜。 </p>
+
+                                <h3>Mochi 积分的优点：</h3>
+                                <ul>
+                                    <li>使用一行代码就可以在我们的游戏中显示排行榜。</li>
+                                    <li>可以为您的每个游戏创建任意个排行榜。</li>
+                                    <li>跟踪任何类型的积分 – 根据时间或数字进行跟踪，并排序。</li>
+                                    <li>自动记住用户名和最后积分，并显示用户所在国家。</li>
+                                    <li>管理工具可以让您删除玩家积分或将他们全部禁用。</li>
+                                    <li>从您的游戏到 Mochi 积分服务器的通信是加密的。</li>
+                                    <li>集成了社交网络、Mochi发布商和 Mochi游戏。</li>
+                                </ul>
+                            </div>
+
+                            <div class="section_3">
+                                <a name="score_pre"></a>
+                                <h2>2.2 前提条件</h2>
+                                <p>
+                                    MochiAPI与 Flash Player 7 之前的版本不兼容，并且不再兼容 ActionScript 1.0。
+                                </p>
+                                <p>
+                                    开始前，请确保您已经进行了以下操作：
+                                </p>
+                                <ol>
+                                    <li> 在 www.mochimedia.com 上注册一个Mochi开发者账户</li>
+                                    <li> 登录并添加新游戏到您的账户。</li>
+                                    <li> 为您的游戏创建一个排行榜。</li>
+                                    <li> 下载 MochiAPI 的最新版本，并将 include 文件夹复制到您的 .fla 目录。</li>
+                                    <li> 调用 <code>connect()</code> 初始化 Mochi积分API。</li>
+                                </ol>
+                            </div>
+                            <div class="clear"></div>
+
+                            <div class="section_3">
+                                <a name="Displaying_the_Leaderboard_Widget"></a>
+                                <h2>2.3 显示排行榜</h2>
+
+                                <p>如果您只是想显示您游戏的高分榜，那么只需将下面的脚本添加到您的游戏：</p>
+
+                                <blockquote class="code">
+                                    <span class="comment">// 停止时间轴并显示排行榜 </span><br> mochi.as2.MochiScores.showLeaderboard({boardID: ”xxx”});
+                                </blockquote>
+
+                                <p>… 在引号中的 ‘xxx’ 代表您的排行榜 ID。如果您已经连接到 MochiServices 并设置了您的排行榜 ID，那么排行榜窗体部件将调用 <strong>stop();</strong> 以停止时间轴，然后进行显示。玩家无法用这种方式提交高分 — 他们只能查看积分。如果您想要允许玩家在玩游戏前查看高分棒，以上代码很方便。</p>
+
+                                <p>默认情况下，showLeaderboard 方法将在您的游戏主要时间轴上调用 <strong>stop();</strong>，然后一旦排行榜被用户关闭在时间轴上就会调用 <strong>play();</strong>。这只在您不为排行榜提供容器 MovieClip 或您的剪辑是视频的根的情况下发生。如果您希望覆盖该行为，请参阅有关提供您自己的自定义 onDisplay 和 onClose 处理器<a href="#Other_Leaderboard_Options">章节 2.8： 其他排行榜选项</a>。</p>
+
+                                <p>您
+还将注意在排行榜显示前会出现一个预载图片。
+除非您在排行榜选项中提供一个分辨率，否则该图片将出现在您的游戏画面的左上角。如果您提供了分辨率，那么预载图片将出现在排行榜显示区域的中心。您还可
+以通过在排行榜选项中设置变量完全关闭预载图片。关于选项的更多信息，请查看以下内容。</p>
+
+                                <p>为了让玩家在玩您的游戏后提交积分，您需要调用相同的方法，还要提供一个包含他们的积分的对象，如下：</p>
+
+                                <blockquote class="code">
+                                    <span class="comment">// 停止主要的时间轴并提交一个分数到排行榜</span><br> mochi.as2.MochiScores.showLeaderboard({boardID: ”xxx”, score: 128472});
+                                </blockquote>
+
+                                <p>… 这里 128472 是玩家的实际分数。如果您要根据时间跟踪积分，如在竞速游戏中，以毫秒为单位发送玩家分数。例如，玩家在 12.5 秒内完成游戏，则发送整数 12500。</p>
+
+
+                                <p>当排行榜窗体部件出现时，将会有一个输入框，在这里他们可以输入用户名。输入之后，就可以提交他们的分数。</p>
+                                <p>如果在您的游戏中有自己的注册系统，或希望阻止玩家输入他们喜欢的任何名字，您可以在代码中提供用户名，如下：</p>
+
+                                <blockquote class="code">
+                                    <span class="comment">// 停止主要时间轴并将积分和用户名提交到排行榜</span><br> mochi.as2.MochiScores.showLeaderboard({boardID: ”xxx”, score: 128472, name: “janedoe”});
+                                </blockquote>
+
+                                <p>… 引号中的 ‘janedoe’ 是用户名。这将显示带有已经输入的玩家名字的排行榜窗体部件，并且不可编辑。</p>
+                                <p>看了以上内容就可以开始显示排行榜了！如果您想要做更进一步的自定义，请继续阅读。</p>
+                            </div>
+                            <div class="section_3">
+                                <a name="Saving_Your_Board_ID"></a>
+                                <h2>2.4 保存您的 排行榜ID</h2>
+
+                                <p>如果您不希望每次都要将排行榜 ID 传递到 showLeaderboard 调用，您可以通过在游戏中添加以下代码保存排行榜 ID：</p>
+
+                                <blockquote class="code">
+                                    <span class="comment">// 为所有随后的排行榜调用设置排行榜ID</span><br> mochi.as2.MochiScores.setBoardID(”xxx”);
+                                </blockquote>
+
+                                <p>… 在引号中的 ‘xxx’ 代表您的排行榜 ID。该API方法为以后的API调用设置排行榜ID，所以您不再需要将boardID参数传递给您的API调用。您总是可以通过使用不同的 排行榜ID 调用该方法来进行更改。</p>
+                            </div>
+                            <div class="section_3">
+                                <a name="Other_Leaderboard_Options"></a>
+                                <h2>2.5 其他排行榜选项</h2>
+
+                                <p>在 showScores API调用中的 <code>{}</code> 是被称为选项对象的 ActionScript 对象。这些选项改变了排行榜窗体部件的显示方式。您可以在该对象输入任意多个支持的可选参数。下面是所有可用选项的列表。</p>
+
+                                <h3>基本选项：</h3>
+
+                                <blockquote>
+                                        score — 玩家要提交的积分（整数或以毫秒为单位的时间）<br> name&nbsp;— 玩家的名字<br> boardID&nbsp;— 排行榜 ID（覆盖 setBoardID）
+                                </blockquote>
+
+                                <h3>回调选项：</h3>
+
+                                <blockquote>
+                                        onDisplay - 当显示 GUI 后调用的函数。默认： function () { clip.stop(); }<br> onClose - 当 GUI 结束或无法加载时调用的函数。默认： function () { clip.play(); }<br> onError - 当排行榜无法加载的时候调用的函数。默认： onClose();
+                                </blockquote>
+
+                                <h3>显示选项：</h3>
+
+                                <blockquote>
+                                        res — 排行榜背景的大小。 （例如，"500x400"）<br> width — 排行榜的精确宽度（可选）。  {}<em>高度</em>也必须设置。<br> height — 排行榜的精确高度（可选）。 <em>宽度</em>也必须设置。<br> preloaderDisplay — 在排行榜加载过程中显示预载图片。默认值为 true。<br> numScores — 可以显示的积分的最大数字。  您可以指定从 1 到 25 的任何数字，且默认值为 10。更改这里会改变排行榜的高度。<br> hideDoneButton — 如果设置为 true，则会隐藏 '完成' 按钮，然后通过调用 closeLeaderboard 在代码中关闭排行榜。<br> showTableRank — 如果您希望在表格的底部显示玩家的排名，设置为 true。<br> previewScores — 如果您希望在玩家提交他们的姓名和积分前显示高分榜，设置为 true。<br>
+scoreMessage — 允许开发者更改排行榜的信息。这应该作为一个对象传递，格式如下： { highscore: "Beat my
+highscore of $${highscore} in $${game}!", latestscore: "I just scored
+$${score} in $${game}!", gameinvite: "Come play $${game}!" } </blockquote>
+
+                                <h3>用于定制社交链接共享的位置令牌</h3>
+                                <blockquote>
+                                    $${game} — 包含排行榜的游戏的名称<br> $${board} — 排行榜的名称<br> $${score} — 用户刚刚提交的积分<br> $${highscore} — 用户提交的最高分<br>
+                                </blockquote>
+                                
+                                <h3>控制排行榜大小：</h3>
+
+                                <p>当您使用 "res" 选项时，您的排行榜将显示在与其大小匹配的矩形背景的中心。如果您想要指定精确的排行榜像素大小，那么您可以给出两个单独的参数，<em>宽度</em>和<em>高度</em>。  如果您使用<em>宽度</em>和<em>高度</em>，但省略了 <em>res</em>，那么背景将会消失，并且排行榜将移向 _root 或您在 MochiServices.connect() 中指定的剪辑（可选）的 0,0。下图说明了这些选项是如何一起工作的：</p>
+
+                                <img src="dev_docs_files/leaderboard_width_height_api.png" border="1" height="560" width="738">
+
+                            </div>
+                            <div class="section_3">
+                                <a name="The_MochiScores_API"></a>
+                                <h2>2.6 API 引用 </h2>
+
+                                <p>这是 Mochi积分API 调用的完整列表。大部分的开发者只需使用 connect、setBoardID 和 showLeaderboard。其他调用提供其他功能，这些功能允许高级的开发者使用 MochiServices后台 创建自定义的排行榜。</p>
+
+                                <dl>
+                                    <dt>mochi.as2.MochiScores.setBoardID(boardID:String):Void </dt>
+                                        <dd>设置模式的名称，以用于对提交和显示的积分进行分类。<br> @param boardID — 模式的唯一字符串名称</dd>
+
+                                    <dt>mochi.as2.MochiScores.showLeaderboard(options:Object):Void</dt>
+                                        <dd>显示当前高分榜GUI。<br> @param options — 可选参数 &lt;参见： 排行榜选项&gt;</dd>
+
+                                    <dt>mochi.as2.MochiScores.closeLeaderboard():Void</dt>
+                                        <dd>关闭排行榜 GUI（与玩家在排行榜点击 ‘完成’ 的效果相同） </dd>
+
+                                    <dt>mochi.as2.MochiScores.submit (score:Number, username:String, callbackObj:Object, callbackMethod:Object):Void</dt>
+                                        <dd>向服务器提交一个分数。将会发送一个积分对象给回调方法 &lt;参见： 积分数据格式&gt;<br> @param name — 用户的字符串名称。<br> @param score — 代表分数的数字。 如果分数是时间，那么以毫秒为单位进行发送。<br> @param callbackObj — 包含回调方法的对象或类实例<br> @param callbackMethod — 发送分数时调用的方法的字符串名称。</dd>
+
+                                    <dt>mochi.as2.MochiScores.requestList (callbackObj:Object, callbackMethod:Object):Void</dt>
+                                        <dd>返回一个最多为 50 个分数对象的数组。 将会发送一个积分对象给回调方法 &lt;参见： <a href="#Scores_Data_Format">积分数据格式</a>&gt;<br> @param callbackObj — 包含回调方法的对象或类实例<br> @param callbackMethod — 发送积分时调用的方法的字符串名称。默认值： "onLoad"</dd>
+
+                                    <dt>mochi.as2.MochiScores.scoresArrayToObjects (scores:Object):Void</dt>
+                                        <dd>将由 requestList 返回的数组转换为键是从 col 派生的对象的数组。<br> @param scores — 返回到 requestList 回调方法的积分对象</dd>
+
+                                    <dt>mochi.as2.MochiScores.getPlayerInfo (callbackObj:Object, callbackMethod:Object):Void</dt>
+                                        <dd>获取已经保存在 SharedObject 的所有持久性的玩家数据。</dd>
+
+                                </dl>
+                            </div>
+                            <div class="section_3">
+                                <a name="Error_Handling"></a>
+                                <h2>2.7 错误处理</h2>
+
+                                <p>所有网络服务，例如需要网络连接才能正常工作的服务。由于玩家的网络连接可能在游戏过程中出现问题，也可能这些服务出现问题。为了处理这些问题，我们提供额外的错误处理器，你可以将它们传递给服务。</p>
+
+                                  <p>
+                                    <code>mochi.as2.MochiServices.connect</code> 方法还包括传递 onError 方法的功能。您还可以在选项对象中传递一个可选的 onError 处理器 showLeaderboard。它将会在由于某些原因无法加载排行榜的时候进行调用。默认情况下，发生错误的时候会调用 onClose 方法。
+                                </p>
+                                <p>其
+他方法，例如 requestList 和 submit，不包括 onError
+处理器。但是，您可以查看返回的结果以获悉是否发生错误。一旦发生错误，结果对象将返回名为 ‘error’ 值为 true 的变量。此外，名为
+‘errorCode’ 的变量将返回以上一种状态代码。</p>
+
+                            </div>
+                            <div class="section_3">
+                            <a name="Scores_Data_Format"></a>
+                            <h2>2.8 自定义排行榜和积分数据</h2>
+
+                            <p>如果您想要创建自定义的排行榜，您可以使用 Mochi积分API 提交积分，并从您的排行榜中获取多达 50 个积分。要获取积分数据，您必须首先使用 <strong>setBoardID</strong> 方法设置您的排行榜 ID，然后调用 <strong>requestList</strong>，提供一个回调方法以接收积分数据对象。</p>
+
+                            <blockquote class="code">mochi.as2.MochiScores.setBoardID("xxxxxxxxxxxxxxxx"); <span class="comment"> // 为您希望使用的排行榜设置 排行榜ID</span><br> mochi.as2.MochiScores.requestList(this, "onScoresReceived"); <span class="comment"> // 请求积分并将它们发生到该对象或类中的 onScoresReceived 方法</span>
+                            </blockquote>
+
+                            <p>您的回调方法应该接受<code>Object</code>类型的单个参数。该对象将包含积分对象。如果发生错误，对象将包含一个名为 <em>error</em> 值为 true 的变量，以及一个名为 <em>errorCode</em> 对错误进行说明的变量。</p>
+
+
+<blockquote class="code"><pre>//
+//
+
+public function onScoresReceived (args:Object):Void {
+
+    if (args.scores != null) {
+
+        trace("Scores received!");
+
+        var newScores:Object = mochi.as2.MochiScores.scoresArrayToObjects(args.scores);
+
+    } else {
+
+        if (args.error) {
+            trace("Error: " + args.errorCode);
+        }
+
+    }
+
+}
+</pre></blockquote>
+
+
+                            <p>如果您是使用 submit 和 requestList API调用来创建自定义的排行榜，将会接收到您的积分数据，格式如下：</p>
+<blockquote class="code trace">{ now: 1197420828414.14,<br> places: { daily: "100%", weekly: "100%", monthly: "100%" },<br> counts: { daily: 2, weekly: 4, monthly: 8 },<br> daily: { cols: ["name", "geo", "score", "timestamp"], rows: [["george", "us", 3333, 1197420828414.14], …]},<br> weekly: { cols: ["name", "geo", "score", "timestamp"], rows: [["george", "us", 3333, 1197420828414.14], …]},<br> monthly: { cols: ["name", "geo", "score", "timestamp"], rows: [["george", "us", 3333, 1197420828414.14], …]}<br> }</blockquote>
+                            <p>这是一个包含 4 个变量的 ActionScript 对象：</p>
+                            <blockquote>
+                                    now — 当前服务器时间戳记，以毫秒为单位，自新纪元开始<br> places — 每个表格中该玩家的积分达到的百分位数<br> counts — 每个表格中积分的数字<br> daily — 每日表格的积分<br> weekly — 每周表格的积分<br> monthly — 每月表格的积分
+                            </blockquote>
+                            <p>每日、每周和每月变量是包含以下变量的对象：</p>
+                            <blockquote>
+                                    cols — 包含列的键名的数组<br> rows — 行的数组，每个行数组包含与每一个列的键名对应的值
+                            </blockquote>
+
+                            <p>您还可以通过将积分数据发送到 <code>MochiScores.scoresArrayToObjects</code> 来将您的积分从行和列转换为一个对象的列表。这将返回一个新的对象，其中每一行为带有键值对的对象。下面是如何转换<em>每日</em>积分的一个示例：</p>
+
+                            <blockquote class="code trace">
+daily { [{name: "george", geo: "us", score: 3333, timestamp,
+11974208328414.14}, {name: "george", geo: "us", score: 3333, timestamp,
+11974208328414.14}, …] } </blockquote>
+
+                        </div>
+                        </div><!-- mochiscores -->
+
+                        <!-- mochidigits -->
+                        <div class="section_2">
+                            <a name="MochiDigits"></a>
+                            <h1>Mochi 数字</h1>
+                            <div class="section_3">
+                                <a name="digits_ov"></a>
+                                <h2>3.1 概述</h2>
+                                <p>
+Mochi
+数字为开发者提供了一种简单快捷的方法，以便他们在内存中对敏感的数字进行编码。面对黑客问题，虽然没有一种万无一失的解决方案，但这至少为那些希望他们
+的积分不被内存编辑工具修改的开发者提供了另一层安全保障。 </p>
+                            </div>
+                            <div class="section_3">
+                                <a name="digits_pre"></a>
+                                <h2>3.2 前提条件</h2>
+
+                                <h4>安装 Mochi积分API</h4>
+                                <ol>
+                                    <li>下载并解压缩最新的 MochiAPI。 </li>
+                                    <li>复制 mochi 文件夹到您的游戏根级类库目录中。一般情况下这与您的游戏的 FLA 文件目录相同。</li>
+                                </ol>
+
+                                <div class="download">
+                                      <a href="https://www.mochimedia.com/dl/MochiAPI_v3_8.zip">Mochi API v3.8</a>
+                                </div>
+                            </div>
+                            <div class="section_3">
+                                <a name="digits_use"></a>
+                                <h2>3.3 使用</h2>
+                                <p>
+                                    使用 MochiDigits 很简单，可以像操作其他对象一样来操作 MochiDigits ，也可以使用一套简便易用的功能或只需直接改变单个属性来修改MochiDigits。
+                                </p>
+
+                                <blockquote class="code">
+                                    import mochi.as2.MochiDigits;<br> <br> var score:MochiDigits;<br> score = new MochiDigits(0);
+                                </blockquote>
+
+                                <p>
+                                    这创建了值为“0”的积分对象。现在您可以调用两个易用的功能来改变积分
+                                </p>
+
+                                <dl>
+                                    <dt>public function setValue(digit:Number):void</dt>
+                                    <dd>将 MochiDigits 对象的值设置为指定的数字<br> @param digit — 适用于该对象的值</dd>
+
+                                    <dt>public function addValue(inc:Number):void</dt>
+                                    <dd>将 MochiDigits 对象的值的增加量设置为指定的数字<br> @param digit — 增加对象的值</dd>
+
+                                    <dt>public function get value():Number<br> public function set value(v:Number):void</dt>
+                                    <dd>允许对未编码积分进行直接访问的属性</dd>
+                                </dl>
+
+
+                                <p>
+                                    一个实例，如果您想说，抓一个橡子就奖励玩家100点，您只需调用 addValue
+                                </p>
+
+                                <blockquote class="code">
+                                    score.addValue(100);
+                                </blockquote>
+
+                                <p>
+                                    它就是这么简单。如果您想说，玩家开始了一个新的关卡。此时您可能创建一个新的积分对象，它可能需要通过将值设置为零来清空。
+                                </p>
+
+                                <blockquote class="code">
+                                    score.setValue(0);
+                                </blockquote>
+
+                                <p>
+                                    最后，您可能想知道如何获取您的积分？只需使用 .value 属性
+                                </p>
+
+                                <blockquote class="code">
+                                    mochi.as2.MochiScores.showLeaderboard({boardID: ”xxx”, score: score.value});
+                                </blockquote>
+
+                                <p>
+                                    您可以使用该属性执行高级的操作，例如，运用乘法器或任何您关心的操作。请记住，如果您使用的是未加密的积分，您的数据很容易被篡改。
+                                </p>
+                            </div>
+                        </div>
+                        <!-- mochidigits -->
+
+                        <div class="section_2">
+                            <a name="LinkTracking"></a>
+                            <h1>链接跟踪API 说明</h1>
+                            <div class="section_1">
+
+                                <a name="link_ov"></a>
+                                <h2>1.1 概述</h2>
+                                <p>
+Mochi链接跟踪 允许游戏开发者跟踪所有来自他们的游戏的流量。通过使用 Mochi链接跟踪
+方法调用，您可以得到您的游戏中的任何链接的重要统计数据。您可以跟踪任意数量的游戏中的链接，即使您的游戏通过网络传播后，也可以动态更改发送到玩家的
+URL。 </p>
+
+                                <h3>链接跟踪的优点</h3>
+                                <ul>
+                                    <li>您想要在您的游戏中跟踪多少链接都可以。</li>
+                                    <li>随时动态更改链接指向的 URL。</li>
+                                    <li>包括增强版弹出式拦截保护，所以您的链接要在尽可能多的情况下运行。</li>
+                                    <li>获取有价值的报告，它可以通知您从每个链接得到的流量数。</li>
+                                </ul>
+
+                                <h3>链接跟踪适用于：</h3>
+                                <ul>
+                                    <li>查出最吸引游客的链接位置。</li>
+                                    <li>了解哪些主机最适合吸引流量。</li>
+                                    <li>帮助确定您的游戏价值，使赞助商获得真实的流量数字。</li>
+                                    <li>通过在网上动态更改指向不同赞助商的链接出售定时的赞助。</li>
+                                </ul>
+                            </div>
+                            <div class="section_1">
+                                <a name="link_pre"></a>
+                                <h2>1.2 先决条件</h2>
+
+                                <p>
+                                    Mochi API与 Flash Player 7 之前的版本不兼容，并且不再兼容 ActionScript 1.0。
+                                </p>
+
+                                <h4>安装 Mochi 广告 API</h4>
+                                <ol>
+                                    <li>下载并解压缩最新的 Mochi API。 </li>
+                                    <li>复制 mochi 文件夹并将其粘贴到您的游戏根级目录。 一般情况下这与您的游戏的 FLA 文件目录相同。</li>
+                                </ol>
+
+                                <p><span style="color: rgb(204, 0, 0);">注意：</span> 在API 3.0 修订版中，我们更改了库的命名空间以统一和组织我们的包。  现在您必须明确调用特定版本 Mochi API： 分别是 <code>mochi.as2.*</code>  或 <code>mochi.as3.*</code>。  为了更好地说明这个文档，我们将显示指定 ActionScript 2.0 API的示例。  只需从代码样本中更改 <code>mochi.as2.</code>，并将 <code>import mochi.as3.*;</code> 添加到您的代码块开头部分以使用 ActionScript 3.0 API。</p>
+
+                                <div class="download">
+                                      <a href="https://www.mochimedia.com/dl/MochiAPI_v3_8.zip">Mochi API v3.8</a>
+                                </div>
+                            </div>
+                            <div class="section_1">
+                                <a name="link_api"></a>
+                                <h2>1.3 链接跟踪API</h2>
+
+                                <div class="function">
+                                    <h3>addLinkEvent()</h3>
+                                    <div class="signature">
+                                        <code>function addLinkEvent(url:String, backupUrl:String, container:DisplayObjectContainer, [callback:Function]):Void</code>
+                                    </div>
+
+                                    <div class="description">
+                                        <h4>描述</h4>
+                                        <p>
+                                            添加点击事件监听，将用户指向外部网站的 DisplayObjectContainer。
+                                        </p>
+                                    </div>
+
+                                    <div class="parameters">
+                                        <h4>参数</h4>
+                                        <dl>
+                                            <dt><strong>url</strong>:String</dt>
+                                            <dd>当您创建一个新的链接时，通过 Mochi 重定向提供给您的 URL。</dd>
+                                            <dt><strong>backupUrl</strong>:String</dt>
+                                            <dd>Mochi 服务器不响应时，将会求助的 URL。</dd>
+                                            <dt><strong>container</strong>:DisplayObjectContainer</dt>
+                                            <dd>将点击事件附加到一个有效的 DisplayObjectContainer（或 AS2 中的 MovieClip）的引用。</dd>
+                                            <dt><strong>callback</strong>:Function</dt>
+                                            <dd>发生点击事件时调用的函数。 没有传递的参数。</dd>
+                                        </dl>
+                                    </div>
+
+                                    <div class="example">
+                                        <h4>AS3 示例：</h4>
+<blockquote class="code example"><pre>var container:Sprite = new Sprite(); <span class="comment">//If your using SimpleButton, you'll need a display container</span>
+container.addChild(mySimpleButton); <span class="comment">//reference to your button</span>
+mochi.as2.MochiServices.addLinkEvent(
+    'http://link.mochiads.com/link/XXXXXXXXXXX',  <span class="comment">//Mochi provided URL</span>
+    'http://mygamesite.com', <span class="comment">//Backup URL in case Mochi servers are unavailable</span>
+    container, <span class="comment">//Sprite/Movie Clip to connect the click event to</span>
+    onMenuClick <span class="comment">//Callback function</span>
+);
+
+<span class="comment">//...</span>
+
+public function onMenuClick():Void {
+    <span class="comment">// insert and callback code here</span>
+}</pre></blockquote>
+                                        <p class="note">
+                                            <code>addLinkEvent</code> 需要到任何 DisplayObjectContainer 的引用。 例如，如果您将 Sprite 与 <code>buttonMode = true</code> 联合使用，您可以传递一个引用给 Sprite 本身。 如果您使用 SimpleButton 的 TextField，您需要将其添加到封闭的 Sprite。
+                                        </p>
+                                    </div>
+                                </div><!--! end function -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- mochiads api local docs end -->
+
+                    <!--! MOCHICRYPT -->
+                    <div class="section_1">
+                        <a name="MochiCrypt"></a> <a name="LiveUpdates"></a>
+                        <h1>Mochi 在线更新</h1>
+                        <div class="section_2">
+                            <h2><a name="mc_overview"></a>1.1 概述</h2>
+
+                            <div class="figure">
+                                <img class="diagram" src="dev_docs_files/g_mochicrypt-system.gif" height="220" width="199">
+                            </div>
+                            <p>
+                                我们的版本控制和加密技术让您可以创建一个 SWF 的特殊版本，它可以随时进行更新，并包含一个额外的加密层避免反编译。
+                            </p>
+                            <h3>Mochi 在线更新的优点</h3>
+                            <ul>
+                                <li>随时<strong>更新</strong>与您的游戏有关的任何内容。 更新版本将会立即提供给全世界的玩家。</li>
+                                <li>游戏<em>无</em>需 Mochi 服务器就可以玩 – 您的文件<strong>完全独立</strong>。</li>
+                                <li>除在线外，您的游戏可以在<strong>脱机</strong>状态下进行 – 脱机玩家只需获取原始打包版本。</li>
+                                <li>增强的<strong>加密</strong>和阻止反编译。</li>
+                                <li>下载新的更新<strong>快速</strong>且<strong>透明</strong>，玩家只需要版本之间不同的部分。 </li>
+                            </ul>
+                            <h3>Mochi 在线更新适用于</h3>
+                            <ul>
+                                <li>修复那些游戏发行后意外出现的讨厌的 bug。</li>
+                                <li>最近更改您的标志了吗？ 没有问题，上载附带新欢迎画面的新版本。</li>
+                                <li>您的游戏出现热点新续集了吗？ 添加在一个将用户指向续集的链接和截图中，以此增加用户认知，吸引流量。</li>
+                                <li>在一段固定时间内向某人出售定时赞助。 只需上载新版本以及他们的链接和欢迎画面，并在完成时恢复到旧版本。</li>
+                            </ul>
+                            <h3>工作原理</h3>
+                            <p>
+Mochi 在线更新游戏过程对于用户来说就像任何其他游戏一样。 但是在场景的后面，第一次加载游戏时，会使用 Mochi
+服务器检查是否提供新版本。 如果有，游戏将会在加载过程中进行修补（它只发送最小差异，所以不需要再下载整个游戏） </p>
+
+                        </div>
+                        <div class="section_2">
+                            <h2><a name="mc_install"></a>1.2 普通安装</h2>
+                            <h3>添加一个新游戏</h3>
+                            <ol>
+                                <li>像平常一样点击 ‘添加游戏’ 将一个游戏添加到 Mochi 服务。</li>
+                                <li>查看 '使用Mochi 在线更新' 以启用该功能。</li>
+                                <li>将验证代码添加到您的游戏 - 这确保您具有访问源代码的权利。</li>
+                                <li>上载您的游戏会自动添加预载，所以您无需为预载内置任何广告代码。 其他游戏中广告格式正常。</li>
+                            </ol>
+                            <h3>上载您的游戏</h3>
+                            <ol>
+                                <li>从开发者控制面板点击您的游戏。</li>
+                                <li>点击 '游戏设置' 链接</li>
+                                <li>在 '游戏文件' 部分，点击 '上载新版本'。</li>
+                                <li>为新游戏版本选择 '使用Mochi 在线更新'。</li>
+                                <li>按照屏幕上的指示，并上传您的新版本。</li>
+                            </ol>
+                            <h3>就是它啦！</h3>
+                            <p>
+                                在任何您喜欢的地方发行您的新版本！ 如果您随时想要更改您的游戏，请访问您的<em>游戏设置</em>选项卡并上载新版本。 几分钟之内，玩家将享受您带来的惊喜。
+                            </p>
+
+
+                        </div>
+                        <div class="section_2">
+                            <h2><a name="mc_test"></a>1.3 测试您的游戏兼容性</h2>
+                            <p>
+                                Mochi 在线更新服务将游戏内置到 AS3 加载 SWF 中。 Flash Player 在用这种方式加载时与通过一个 HTML 页面或直接加载到浏览器时，处理游戏的方式有所不同。
+                            </p>
+                            <p>
+                                要测试兼容性，使用 <a href="http://www.mochimedia.com/%7Ematthew/loadertest/LoaderTest.html">LoaderTest</a>
+功能加载您的游戏以查明您是否可以重现这个问题。 LoaderTest 与加密和版本控制工具的加载 SWF 使用相同的基础 Flash 功能。
+如果使用 LoaderTest 测试时问题仍然存在，那么您将需要对您的游戏进行改动。 如果问题不存在，那么请通知我们，我们将调查该问题。 </p>
+
+
+                        </div>
+                        <div class="section_2">
+                            <h2><a name="mc_as3"></a>1.4 准备 AS3 游戏</h2>
+
+
+                            <h3>AS3 显示列表成员</h3>
+                            <p>
+Adobe’s Flash Player 对于将 AS3 SWF 载入到另一个 AS3 SWF 与直接由浏览器进行加载处理方法有所不同。
+具体而言，直到构造形成后主要对象才添加到显示列表，然而直接加载时主要对象已经连接到显示列表中。 这造成 <code>stage</code> 和 <code>parent</code> 属性被设置为 ‘空’（并且导致空对象引用）。
+                            </p>
+                            <p>
+                                这通常可以通过移动任何代码解决，需要与被转移到一个事件监听器的舞台进行互动。 对此，<code>Event.ENTER_FRAME</code>、<code>Event.INIT</code> 或 <code>Event.ADDED_TO_STAGE</code> 事件是合适候选。
+                            </p>
+                            <h3>AS3 加载信息，第三方API</h3>
+                            <p>
+                                由于Mochi 在线更新使用一个 <code>flash.display.Loader</code>
+加载您的代码，访问 FlashVar 和 URL 较正常访问应有所不同。 有些第三方API可能需要小小改动才能将该 LoaderInfo 代替
+root.loaderInfo。 该代码将在使用Mochi 在线更新的游戏中得到真正的 LoaderInfo（不使用Mochi
+在线更新情况也适用）： </p>
+<blockquote class="code"><pre>    public function getMainLoaderInfo():LoaderInfo {
+        var loaderInfo:LoaderInfo = root.loaderInfo;
+        if (loaderInfo.loader != null) {
+            loaderInfo = loaderInfo.loader.loaderInfo;
+        }
+        return loaderInfo;
+    }
+</pre></blockquote>
+                        </div>
+                                                <div class="section_2">
+                            <h2><a name="mc_as2"></a>1.5 准备 AS2 游戏</h2>
+
+                            <div class="section_3">
+                                <h3>AS2 声音</h3>
+                                <p>
+                                    在 AS2 游戏中，有些使用了 AS3 加载的声音无法正常播放，是因为声音没有附加到一个 movieclip ， 要解决这个问题，您应该确保您的声音总是附加到 movieclip：
+                                </p>
+<blockquote class="code"><pre>var s = new Sound(mc);
+</pre></blockquote>
+                                <p> 以下是如何在您的 AS2
+游戏中处理声音的示例，该示例使它们与使用了 AS3 加载的内容兼容。 在 .as 文件的最高级别，下面的代码在他们自己的 MovieClip
+上定义并创建了所有不同的声音对象： </p>
+
+<blockquote class="code"><pre>var core = this;
+var make_sound = function (mc_name, depth, volume, name) {
+    var mc = core.createEmptyMovieClip(mc_name, depth);
+    var snd = new Sound(mc);
+    snd.setVolume(volume);
+    snd.attachSound(name);
+    return snd;
+};
+var s_newline = make_sound('so_newline', 200, 30, 'newlineMP3');
+var s_skull = make_sound('so_skull', 201, 100, 'skullMP3');
+var s_doubleskull = make_sound('so_doubleskull', 202, 100, 'doubleskullMP3');
+var s_success = make_sound('so_success', 203, 30, 'successMP3');
+var s_timer = make_sound('so_timer', 204, 100, 'timerMP3');
+</pre></blockquote>
+                                <p>
+                                    然后，当播放声音时，使用下面一行代码：
+                                </p>
+<blockquote class="code"><pre>core.s_skull.start(0, 1);</pre></blockquote>
+
+                            </div>
+
+                            <div class="section_3">
+                                <h3>使用 _root 和 _level0</h3>
+                                <p>
+                                    不建议在您的游戏中引用 <code>_root</code> 。 如果您在<a href="#mc_test">测试您的游戏</a>兼容性时遇到了问题，请替换这些引用然后再进行测试。 使用 <code>_level0</code>、_level<em>n</em> 或 关卡中加载 <code>loadMovie</code> 在 <a href="http://livedocs.adobe.com/flex/2/langref/flash/display/AVM1Movie.html">AVM1Movie</a> 中不支持 ，所以您必须更改依赖于它的代码。
+                                </p>
+                            </div>
+
+                            <div class="section_3">
+                                <h3>移动 _root 使 MovieClip.hitTest 表现怪异</h3>
+                                <p>
+                                    如果您更改 <code>_root._x</code> 或 <code>_root._y</code>，您可能会注意 <code>MovieClip.hitTest</code> 与平常相比表现大为不同。 这是因为 <code>MovieClip.hitTest</code> 在 AS3 容器内部时脱离全局坐标，但是它以其他方式基于 <code>_root</code> 坐标。 下面是可以放在初始化代码内的一小段代码，它将使用下面为您提供翻译的这段代码检测容器并换出  <code>MovieClip.hitTest</code> 执行。
+                                </p>
+                                <blockquote class="code"><pre>/* detect AS3 container and patch MovieClip.hitTest */
+if (_level0 === undefined &amp;&amp; MovieClip.prototype.oldHitTest === undefined) {
+   var realRootForReal = this;
+   MovieClip.prototype.oldHitTest = MovieClip.prototype.hitTest;
+   MovieClip.prototype.hitTest = function (x, y, shapeflag) {
+       if (arguments.length === 1) return this.oldHitTest(x);
+       var obj = {x: x, y: y};
+       realRootForReal.localToGlobal(obj);
+       return this.oldHitTest(obj.x, obj.y, shapeflag);
+   }
+}</pre></blockquote>
+                            </div>
+
+                            <div class="section_3">
+                                <h3>使用 Flash 变量</h3>
+                                <p>
+                                    为了 AS2 可以正确挑选 FlashVars，您需要使用指向 SWF 的 URL 代替。 下面是如何将变量从 HTML 传递到您的 Flash 的示例：
+                                </p>
+                                <blockquote class="code"><pre>&lt;embed src="game.swf?variable=awesome"&gt;&lt;/embed&gt;</pre></blockquote>
+                            </div>
+                            <div class="section_3">
+                                <h3>字符串不再作为 MovieClip 引用使用</h3>
+                                <p>
+在 Flash 的早期版本中，它允许您在预计存在 MovieClip 引用的地方使用字符串。 当该内容加载到一个 AS3 容器时，Flash
+不再允许这样操作，而必须更改为引用。 例如： </p>
+                                <blockquote class="code"><pre>// BROKEN: "mc2" is a String, not a MovieClip
+mc.setMask("mc2");
+
+// FIXED: mc2 is a variable that references a MovieClip
+mc.setMask(mc2);</pre></blockquote>
+                            </div>
+                            <div class="section_3">
+                                <h3>使用 SWF 保护加密的 AS2 游戏</h3>
+                                <p>
+                                    使用 SWF 保护重整 AS2 字节代码，让它无法找到验证令牌。 解决方法是将验证令牌作为一种导出标识。 下面是进行操作的说明：
+                                </p>
+                                <ol>
+                                    <li>在 Flash 中打开库窗口。</li>
+                                    <li>右击还没有导出的任何资源（最好是已使用）</li>
+                                    <li>选择“Linkage…”</li>
+                                    <li>勾选“导出为 ActionScript”</li>
+                                    <li>在标签为“标识”的文本框中，输入“XXXXXXXX”</li>
+                                    <li>点击“确定”。</li>
+                                </ol>
+                                <p class="note">
+                                    注意： 'XXXXXXXX' 应替换为您游戏的 Mochi 游戏 ID
+                                </p>
+                            </div>
+                        </div>
+                        <div class="section_2">
+                            <h2><a name="mc_as1"></a>1.6 准备 AS1 游戏</h2>
+                            <p>
+                                <strong>区分大小写：</strong> 用户已报告加载到 <a href="http://livedocs.adobe.com/flex/2/langref/flash/display/AVM1Movie.html">AVM1Movie</a> 的 AS1 游戏目前区分大小写了。
+                            </p>
+                        </div>
+                        <div class="section_2">
+                            <h2><a name="mc_third"></a>1.7 第三方 API 写入 AS2 游戏</h2>
+                            <p>
+这些 API 通过跨脚本的 SWF 进行工作，向 AS2 游戏注入新代码。然而，Flash 不支持 AS2 和 AS3
+之间的跨脚本，并且脚本控制和加密加载 SWF 使用 AS3，这些都阻止正常注入API。 </p>
+                            <p>
+                                <strong>注意：</strong> 虽然 LocalConnection API 还工作着，但是站点可能不会为 AS2 提供它们应有的功能。
+                            </p>
+                        </div>
+                    </div>
+
+                </div><!-- end main -->
+                  <div class="clear"></div>
+
+            </div> <!-- end content -->
+        </div> <!-- end body -->
+
+        <div id="footer">
+            <div class="wrapper">
+                <div id="company">
+                    版权所有 © <a href="http://www.mochimedia.com/" title="Mochi Headquarters">Mochi Media, Inc.</a> | <a href="http://www.mochibot.com/">MochiBot</a> | <a href="http://www.mochiland.com/">MochiLand</a>
+                </div>
+                <div id="foot_nav">
+                    <ul>
+                        <li><a href="http://zh-cn.mochimedia.com/support/dev_faq.html">支持</a><span></span></li>
+                        <li><a href="http://zh-cn.mochimedia.com/support/dev_docs.html">说明</a><span></span></li>
+                        <li><a href="http://zh-cn.mochimedia.com/community">论坛</a><span></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div><!-- end footer -->
+         <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script><script src="dev_docs_files/ga.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var pageTracker = _gat._getTracker("UA-2607846-4");
+            pageTracker._initData();
+            pageTracker._trackPageview();
+        </script>
+    </xi:include></body></html>

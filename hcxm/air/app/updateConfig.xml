@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--本地配置文件 -->
+<configuration xmlns="http://ns.adobe.com/air/framework/update/configuration/1.0">
+<url>http://www.lunalex.com/updateDescriptor.xml</url>
+<defaultUI>
+<dialog name="checkForUpdate" visible="false" />
+</defaultUI>
+<delay>1</delay>
+</configuration>

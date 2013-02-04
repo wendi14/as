@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	分页组件
+	使用说明：
+	1.先把数据总数传给ModelLocator->init(count);
+	2.把取数据的函数传给本组件.CallFunction(func,scope);方便本组件自动去取当前页的数据;
+-->
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Script>
+		<![CDATA[
+			import hcxm.cn.controls.page.model.ModelPage;
+			import mx.events.DropdownEvent;
+			import hcxm.cn.event.Event_;
+			
+			[Bindable]
+			private var mol:ModelPage=hcxm.cn.controls.page.model.ModelPage.getIns();
+			public var ExecFunc:Function;
+			public var Scope:Object;
+			private function combo_change(event):void
+			{
+				
+				var inde=event.target.selectedLabel;
+				mol.PageNow=inde;
+				ExecFunc.call();
+				mol.checkAllEnabled();
+				dispatchEvent(new Event_("gotoPageEvent",inde));
+			}
+			public function CallFunction(fun:Function,scope:Object):void
+			{
+				ExecFunc=fun;
+				Scope=scope;
+			}
+			private function numChange(e:Event):void
+			{
+				var tol=e.target.value;
+				mol.PageNow=1;
+				mol.PageSize=tol;
+				mol.init(mol.Count);
+				ExecFunc.call();
+				mol.checkAllEnabled();
+				//dispatchEvent(new Event_("gotoPageEvent",inde));				
+			}
+		]]>
+	</mx:Script>
+	<mx:Style>
+		/* .btn2
+		{
+			paddingLeft: 4;
+			paddingRight: 4;
+			fontWeight: normal;
+			
+		} */
+	</mx:Style>
+	<mx:Metadata>
+		[Event(name="prevPageEvent",type="flash.events.Event")]
+		[Event(name="nextPageEvent",type="flash.events.Event")]
+		[Event(name="firstPageEvent",type="flash.events.Event")]
+		[Event(name="lastPageEvent",type="flash.events.Event")]
+		[Event(name="gotoPageEvent",type="hcxm.cn.event.Event_")]
+		[Event(name="ExecEvent",type="hcxm.cn.event.Event_")]
+	</mx:Metadata>
+		<mx:HBox width="100%" horizontalAlign="right" verticalAlign="middle" horizontalGap="2">
+			<mx:Button label="" id="btn_first" enabled="{mol.firstEnabled}" click="mol.PageNow=1;mol.checkAllEnabled();ExecFunc.call();dispatchEvent(new Event('firstPageEvent'))" styleName="btn2" icon="@Embed(source='assets/arrow_stop_180.png')" toolTip="首页"/>
+			<mx:Button label="" toolTip="上页" id="btn_prev" enabled="{mol.prevEnabled}" click="mol.PageNow--;mol.PageNow=1;mol.checkAllEnabled();ExecFunc.call();dispatchEvent(new Event('prevPageEvent'))" icon="@Embed(source='assets/arrow_180.png')" styleName="btn2"/>
+			<mx:Button label="" toolTip="下页" id="btn_next" enabled="{mol.nextEnabled}" click="mol.PageNow++;mol.checkAllEnabled();ExecFunc.call();dispatchEvent(new Event('nextPageEvent'))" icon="@Embed(source='assets/arrow.png')" styleName="btn2"/>
+			<mx:Button label="" toolTip="尾页" id="btn_last" enabled="{mol.nextEnabled}" click="mol.PageNow=mol.PageTotal;mol.checkAllEnabled();ExecFunc.call();dispatchEvent(new Event('lastPageEvent'))" fontWeight="normal" icon="@Embed(source='assets/arrow_stop.png')" styleName="btn2"/>
+			
+			<mx:Label text="{mol.PageNow}/{mol.PageTotal}"/>
+			<mx:Label text="跳到"/>
+			<mx:ComboBox width="60" id="combo_page" dataProvider="{mol.PageArrary}" selectedIndex="{mol.PageNow-1}" change="combo_change(event)">
+			</mx:ComboBox>
+			<mx:Label text="页"/>
+			<mx:Label text="每页"/>
+			<mx:NumericStepper  value="{mol.PageSize}" stepSize="1" maximum="100" change="numChange(event)" width="50"
+				enabled="{mol.Count>mol.PageSize}"
+				/>
+		</mx:HBox>
+</mx:Canvas>

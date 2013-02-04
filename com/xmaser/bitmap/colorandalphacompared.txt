@@ -1,0 +1,30 @@
+﻿package{ //导入必需的定义   
+	import flash.display.Bitmap;  
+	import flash.display.BitmapData;  
+	import flash.utils.ByteArray;    
+	public class ColorAndAlphaCompared extends Bitmap    
+	{ 
+		//用来保留灰度位图的变量    
+		private var _greyScale:BitmapData;  
+		//用来保留颜色位图的变量    
+		private var _coloredImage:BitmapData;     
+		//用来保留合成位图的变量     
+		private var _newBitmapData:BitmapData;  
+		//用来保留greyscaleImagePixels（灰度图像像素）的变量     
+		private var _origVector:Vector.<uint>;  
+		//用来保留coloredImagePixels（颜色图像像素）的变量     
+		private var _colorVector:Vector.<uint>;      
+		private var _vector:Vector.<uint>; 
+		//将颜色以及灰度图像的引用传递到结构体之中     
+		public function ColorAndAlphaCompared(bitmapData : BitmapData,greyScaled : BitmapData)     
+		{         
+			_vector = new Vector.<uint>();       
+			_greyScale=greyScaled;       
+			_coloredImage=bitmapData; //使用任意一个jpg引用中的宽度值和高度值来实例化一个新的BitmapData ，并将其透明属性（transparent property）设置为true。        
+			_newBitmapData=new BitmapData(greyScaled.width,greyScaled.height,true,0x00000000);  /*使用lock方法到newBitmapData 上，以避免在添加新像素的时候造成重画*/        
+			_newBitmapData.lock();  
+			/*将bitmapData 传递到这个类所继承的父类的结构体之中。 (Bitmap 类)*/       
+			
+			super(_newBitmapData);   
+			/*保存灰度图像全部边界上的像素*/       
+			_origVector=_greyScale.getVector(_greyScale.rect);  /*由于我们不会调整该向量的长度，所以将它的fixed 值设为true*/        _origVector.fixed=true;  /*保存颜色图像全部边界上的像素*/        _colorVector=_coloredImage.getVector(_coloredImage.rect);  /*设置fixed 变量为true*/        _colorVector.fixed=true;         /*开始分析这两个向量*/        readWrite();     } /*readWrite：    * 这个方法将会循环操作两个向量中的每一个数据索引，并保存   * 分析结果于最终向量之中*/     protected function readWrite():void     {      /*数据所需要分析的次数*/        var totalPixels:int=_colorVector.length;               var i:int=0;               /*定义合成向量的长度*/        _vector.length=totalPixels;                /*设置fixed属性为true*/        _vector.fixed=true;                /*循环所有像素，直到变量到达0*/        while (--totalPixels)        {                 /*将向量的当前数据索引设置为两个分析像素的结果*/            _vector[totalPixels]=int(shiftPixels(int (_origVector[totalPixels]),int(_colorVector[totalPixels])));        }         /*结束循环*/         /* 将新的像素设置到_newBitmapData的边界区域*/         _newBitmapData.setVector(_newBitmapData.rect, _vector);     /* 解锁_newBitmapData，使得player可以重画新的内容*/         _newBitmapData.unlock();     /*清除不使用的内容，以释放存储空间*/        dispose();     } /*shiftPixels: *这个方法可以接受两个不同的像素。 其中一个像素代表 *alpha的值，而另一个像素仅仅代表颜色的值。 这两个像素会被合并到 *一个最终的32位ARGB值之中，并且会被返回到该方法的  调用者之中。 */   private function shiftPixels(alphaChannel : uint,colorChannel : uint):uint   {     /*从代表alpha值的像素中抽取蓝色通道*/         var decimal:uint=alphaChannel>>16&0xFF;      /*将蓝色通道前置，作为colorChannel 像素的alpha*/         var argb : uint = (decimal << 24) | (ColorAndAlphaCompared.extractRED(colorChannel)<<16) | (ColorAndAlphaCompared.extractGREEN(colorChannel)<<8) | ColorAndAlphaCompared.extractBLUE(colorChannel);      /*返回合并的ARGB值*/         return argb;    }          /*Dispose:        *这个方法将会释放在创建透明图像时用到的存储器空间        */        private function dispose():void       {          /*清除greyScale（灰度）图像*/          _greyScale.dispose();          /*清除 _coloredImage 图像*/          _coloredImage.dispose();          /*删除向量*/          _vector=_colorVector=_origVector=null;          /*删除JPG图像的引用*/          _greyScale=_coloredImage=null;       }       /*extractAlpha:       *这个方法会从所提供的十六进制值中提取alpha值       */       static private function extractALPHA(hex : uint):uint       {          return hex>>24 & 0xff;       }       /*extractRED:       *这个方法会从所提供的十六进制值中提取red值（红色值）       */       static private function extractRED(hex : uint):uint       {         return hex>>16 & 0xff;       }       /*extractGREEN:       *这个方法会从所提供的十六进制值中提取green值（绿色值）       */       static private function extractGREEN(hex : uint):uint      {         return hex>>8 & 0xff;      }      /*extractBLUE:      *这个方法会从所提供的十六进制值中提取blue值（蓝色值）      */       static private function extractBLUE(hex : uint):uint      {         return hex & 0xff;      }   }}

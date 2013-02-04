@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--放在服务上的配置文件 -->
+<update xmlns="http://ns.adobe.com/air/framework/update/description/1.0">
+	<!--与编辑完的air 的版本要一致 -->
+<version>v12</version>
+<url>http://www.lunalex.com/ReaderMe.air</url>
+
+<description>This is the latest version of the Sample application.</description>
+</update>
