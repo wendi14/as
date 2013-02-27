@@ -19,6 +19,19 @@ package com.wdcgame.box2d
 		{
 			_world = WDCBox2DFactory.createWorld(gravity);
 			
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			
+		}
+		
+		private function onAddedToStage(e:Event):void 
+		{
+			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			init();
+		}
+		
+		protected function init():void 
+		{
+			
 			debugDraw();
 			startRender()
 		}
@@ -42,6 +55,7 @@ package com.wdcgame.box2d
 		{
 			onRender();
 			_world.Step(1 / WDCBox2DFactory.WORLD_SCALE, 10, 10);
+			_world.ClearForces();
 			_world.DrawDebugData();
 		}
 		
