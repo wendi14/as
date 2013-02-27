@@ -58,7 +58,7 @@ package com.xmaser.utils
                 return null;
             }
             return param1.replace(/^\s+|\s+$/gs, "");
-        }// end function
+        } 
 
         public static function isEmail(param1:String) : Boolean
         {
