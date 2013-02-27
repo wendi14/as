@@ -1,6 +1,7 @@
 package com.wdcgame.box2d 
 {
 	import Box2D.Collision.Shapes.b2PolygonShape;
+	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
@@ -16,6 +17,15 @@ package com.wdcgame.box2d
 		public function WDCBox2DFactory() 
 		{
 			
+		}
+		public static function createWorld(gravity:b2Vec2=null):b2World
+		{
+			if (!gravity) 
+			{
+				gravity = new b2Vec2(0, 9.8);
+			}
+			var world:b2World = new b2World(gravity,true);
+			return world;
 		}
 		
 		public static function createBox(world:b2World,x:Number,y:Number,width:Number,height:Number,isStatic:Boolean):b2Body
