@@ -1,5 +1,6 @@
 package com.wdcgame.box2d 
 {
+	import Box2D.Collision.Shapes.b2CircleShape;
 	import Box2D.Collision.Shapes.b2PolygonShape;
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
@@ -47,6 +48,22 @@ package com.wdcgame.box2d
 			var b:b2Body = world.CreateBody(bodyDef);
 			b.CreateFixture(fixtureDef);
 			
+			return b;
+		}
+		
+		static public function createCircle(world:b2World, x:Number, y:Number, radius:Number, isStatic:Boolean):b2Body 
+		{
+			var bodyDef:b2BodyDef = new b2BodyDef();
+			bodyDef.type = isStatic?b2Body.b2_staticBody:b2Body.b2_dynamicBody;
+			bodyDef.position.Set(x / WORLD_SCALE, y / WORLD_SCALE);
+			
+			var shape:b2CircleShape = new b2CircleShape(radius / WORLD_SCALE);
+			
+			var fixtureDef:b2FixtureDef = new b2FixtureDef();
+			fixtureDef.shape = shape;
+			
+			var b:b2Body = world.CreateBody(bodyDef);
+			b.CreateFixture(fixtureDef);
 			return b;
 		}
 		

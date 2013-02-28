@@ -50,6 +50,11 @@ package com.wdcgame.box2d
 		{
 			return WDCBox2DFactory.createBox(_world, x, y, width, height, isStatic);
 		}
+				
+		protected function createCircle(x:Number,y:Number,radius:Number,isStatic:Boolean):b2Body
+		{
+			return WDCBox2DFactory.createCircle(_world, x, y, radius, isStatic);
+		}
 		
 		private function onEnterFrame(e:Event):void 
 		{
