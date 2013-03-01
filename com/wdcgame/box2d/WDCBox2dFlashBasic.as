@@ -41,10 +41,7 @@ package com.wdcgame.box2d
 			addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		}
 		
-		protected function onRender():void 
-		{
-			
-		}
+		
 		
 		protected function createBox(x:Number,y:Number,width:Number,height:Number,isStatic:Boolean):b2Body
 		{
@@ -58,10 +55,15 @@ package com.wdcgame.box2d
 		
 		private function onEnterFrame(e:Event):void 
 		{
-			onRender();
 			_world.Step(1 / WDCBox2DFactory.WORLD_SCALE, 10, 10);
+			onRender();
 			_world.ClearForces();
 			_world.DrawDebugData();
+		}
+		
+		protected function onRender():void 
+		{
+			
 		}
 		
 		private function debugDraw():void

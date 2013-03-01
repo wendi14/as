@@ -34,7 +34,7 @@ package com.wdcgame.box2d
 			var bodyDef:b2BodyDef = new b2BodyDef();
 			bodyDef.type = isStatic?b2Body.b2_staticBody:b2Body.b2_dynamicBody;
 			bodyDef.position.Set(x / WORLD_SCALE, y / WORLD_SCALE);
-			
+			bodyDef.linearDamping = 0;
 			
 			var shape:b2PolygonShape = new b2PolygonShape();
 			shape.SetAsBox(width / 2 / WORLD_SCALE, height / 2 / WORLD_SCALE);
@@ -44,6 +44,7 @@ package com.wdcgame.box2d
 			fixtureDef.density = 2;
 			fixtureDef.restitution = 0.4;
 			fixtureDef.friction = 0.5;
+			 
 			
 			var b:b2Body = world.CreateBody(bodyDef);
 			b.CreateFixture(fixtureDef);
